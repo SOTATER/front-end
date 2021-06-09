@@ -24,7 +24,8 @@
     "tslib": "^2.0.0",
     "@tsconfig/svelte": "^2.0.0",
     "@carbon/charts-svelte": "^0.41.68",
-    "@smui/linear-progress": "^4.2.0"
+    "@smui/linear-progress": "^4.2.0",
+    "svelte-loading-spinners": "^0.1.5"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0"
