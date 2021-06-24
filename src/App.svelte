@@ -1,5 +1,5 @@
 <script>
-  import { Tooltip } from 'carbon-components-svelte';
+  import SvelteTooltip from 'svelte-tooltip';
   import { text } from 'svelte/internal';
 
   let info = {
@@ -14,11 +14,15 @@
 <div class="Header">
   <div class="PastRank">
     <ul class="PastRankList">
-      <li class="Item tip" title="Platinum 2 0LP">
-        S2020<b /> Platinum
+      <li class="Item tip">
+        <SvelteTooltip tip="Platinum 2 0LP" top color="white">
+          S2020<b /> Platinum
+        </SvelteTooltip>
       </li>
-      <li class="Item tip" title="Platinum 2 0LP">
-        S2020<b /> Platinum
+      <li class="Item tip">
+        <SvelteTooltip tip="Platinum 2 0LP" top color="white">
+          S2020<b /> Platinum
+        </SvelteTooltip>
       </li>
     </ul>
   </div>
@@ -29,8 +33,8 @@
         style="background-image: url(//opgg-static.akamaized.net/images/borders2/platinum.png)"
       />
       <img
-        src="//opgg-static.akamaized.net/images/profile_icons/profileIcon4881.jpg?image=q_auto:best&amp;v=1518361200"
         class="ProfileImage"
+        src="//opgg-static.akamaized.net/images/profile_icons/profileIcon4881.jpg?image=q_auto:best&amp;v=1518361200"
       />
       <span class="Level tip" title="레벨">104</span>
     </div>
