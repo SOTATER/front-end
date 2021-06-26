@@ -24,8 +24,14 @@
     "tslib": "^2.0.0",
     "@tsconfig/svelte": "^2.0.0",
     "@carbon/charts-svelte": "^0.41.68",
+    "carbon-icons-svelte": "^10.33.0",
     "@smui/linear-progress": "^4.2.0",
-    "svelte-loading-spinners": "^0.1.5"
+    "svelte-loading-spinners": "^0.1.5",
+    "lodash": "^4.0.8",
+    "@types/lodash": "^4.14.170",
+    "js-cookie": "^2.2.1",
+    "@types/js-cookie": "^2.2.6",
+    "axios": "^0.21.1"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0"
