@@ -1,30 +1,25 @@
 <script lang="ts">
+	import AutocompleteInput from './components/search/AutocompleteInput.svelte';
 	export let name: string;
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<div class="index-logo">
+	<img class="logo-image" src="https://opgg-static.akamaized.net/logo/20210611215731.8b528e77f19d4de2892e6cb9d83f882a.png" alt="logo">
+</div>
+
+<AutocompleteInput />
+
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
+	:global(body) {
+		background-color: #5383e8;
+	}
+	.index-logo {
+		padding: 32px 0 24px;
+	}
+	.logo-image {
+		display: block;
+		max-height: 200px;
 		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>
