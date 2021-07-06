@@ -79,9 +79,7 @@
     </div>
     <div class="Buttons">
       <button
-        class={clicked === 'renewBtn'
-          ? 'Button SemiRound Blue'
-          : 'Button SemiRound Blue'}
+        class={`Button SemiRound Blue ${clicked}`}
         id="SummonerRefreshButton"
         on:click={() => {
           clickBtn('renewBtn');
@@ -229,7 +227,11 @@
     color: #99a2a2;
     font-size: 11px;
   }
-  .clicked {
-    background: black;
+  .renewBtn {
+    pointer-events: none;
+    cursor: not-allowed;
+
+    transition: opacity 0.5s;
+    animation: 1s linear infinite rotate;
   }
 </style>
