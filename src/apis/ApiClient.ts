@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-axios.defaults.baseURL = 'http://34.69.171.78';
+axios.defaults.baseURL = '' //'http://34.69.171.78';
 axios.defaults.responseType = 'json';
 axios.defaults.timeout = 5000;
 

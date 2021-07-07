@@ -21,13 +21,14 @@
     nickName: '욕하는놈코로나19',
   };
 
-  let clicked = '';
+  let clicked = 'stale';
   let clickBtn = (clickedName) => {
     clicked = clickedName;
-    alert(clicked);
+    console.log(clicked);
     setTimeout(() => {
-      clicked = '1';
-    }, 1000);
+      clicked = 'fresh';
+      console.log(clicked);
+    }, 3000);
   };
 </script>
 
@@ -82,11 +83,17 @@
         class={`Button SemiRound Blue ${clicked}`}
         id="SummonerRefreshButton"
         on:click={() => {
-          clickBtn('renewBtn');
+          clickBtn('renew');
         }}
         style="position: relative;"
       >
-        전적 갱신
+        {#if clicked === 'stale'}
+          전적 갱신
+        {:else if clicked === 'renew'}
+          갱신중
+        {:else if clicked === 'fresh'}
+          갱신됨
+        {/if}
       </button>
       <button
         id="top_tiergraph"
@@ -208,10 +215,15 @@
     text-align: center;
   }
   .Button.Blue {
+    color: #f2f2f2;
     border: 1px solid #1a78ae;
     background: #1f8ecd;
-    color: #f2f2f2;
   }
+  .fresh {
+    border: 1px solid #288b8b;
+    background: #36a4a4;
+  }
+
   .Button.White {
     border: 1px solid #ccd1d1;
     background: #f2f2f2;
@@ -227,11 +239,20 @@
     color: #99a2a2;
     font-size: 11px;
   }
-  .renewBtn {
+  .Button.Blue.renew {
     pointer-events: none;
     cursor: not-allowed;
 
-    transition: opacity 0.5s;
-    animation: 1s linear infinite rotate;
+    background: linear-gradient(to right, red 50%, #1f8ecd 50%);
+    background-size: 200% 100%;
+    animation: myAnimation 2s ease-in;
+  }
+  @keyframes myAnimation {
+    from {
+      background-position: right;
+    }
+    to {
+      background-position: left;
+    }
   }
 </style>
