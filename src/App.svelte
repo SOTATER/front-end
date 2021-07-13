@@ -1,6 +1,5 @@
 <script lang="ts">
 	import AutocompleteInput from './components/search/AutocompleteInput.svelte';
-	export let name: string;
 </script>
 
 <div class="index-logo">
