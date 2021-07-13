@@ -1,6 +1,6 @@
 <script>
-  import { HeaderTitle } from './components/headers';
-  import { TabList } from './components/tabs';
+  import { HeaderTitle } from '../headers';
+  import { TabList } from '../tabs';
 </script>
 
 <main>
