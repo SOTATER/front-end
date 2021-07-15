@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { navigate } from 'svelte-routing';
+  import { push } from 'svelte-spa-router';
   import { Circle2 } from 'svelte-loading-spinners';
   import { debounce } from 'lodash';
   import axios from 'axios';
@@ -52,7 +52,7 @@
   };
 
   const handleClick = () => {
-    navigate(`/summoner/${searchText}`);
+    push(`/summoner/${searchText}`);
   };
 </script>
 
