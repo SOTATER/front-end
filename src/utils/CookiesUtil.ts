@@ -29,10 +29,18 @@ export namespace CookiesArray {
 	}
 
 	export function get(key: string): string[] {
-		const values = Cookies.get(key);
+		let values = Cookies.get(key);
 		if (!values) {
 			return;
 		}
 		return values.split('$');
+	}
+
+	export function isCookie(key: string, value: string): boolean {
+		let values = Cookies.get(key);
+		if (!values) {
+			return;
+		}
+		return values.split('$').indexOf(value) > -1;
 	}
 }
