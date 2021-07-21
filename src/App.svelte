@@ -3,11 +3,14 @@
 </script>
 
 <div class="index-logo">
-	<img class="logo-image" src="https://opgg-static.akamaized.net/logo/20210611215731.8b528e77f19d4de2892e6cb9d83f882a.png" alt="logo">
+	<img
+		class="logo-image"
+		src="https://opgg-static.akamaized.net/logo/20210611215731.8b528e77f19d4de2892e6cb9d83f882a.png"
+		alt="logo"
+	/>
 </div>
 
 <AutocompleteInput />
-
 
 <style>
 	:global(body) {
