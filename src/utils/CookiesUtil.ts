@@ -29,7 +29,7 @@ export namespace CookiesArray {
 	}
 
 	export function get(key: string): string[] {
-		let values = Cookies.get(key);
+		const values = Cookies.get(key);
 		if (!values) {
 			return;
 		}
@@ -37,7 +37,7 @@ export namespace CookiesArray {
 	}
 
 	export function isCookie(key: string, value: string): boolean {
-		let values = Cookies.get(key);
+		const values = Cookies.get(key);
 		if (!values) {
 			return;
 		}

@@ -1,15 +1,15 @@
-<script>
-  import { HeaderTitle } from '../headers';
-  import { TabList } from '../tabs';
+<script lang="ts">
+	import { HeaderTitle } from '../headers';
+	import { TabList } from '../tabs';
 </script>
 
 <main>
-  <HeaderTitle />
-  <TabList />
+	<HeaderTitle />
+	<TabList />
 </main>
 
 <style>
-  main {
-    background-color: #f2f2f2;
-  }
+	main {
+		background-color: #f2f2f2;
+	}
 </style>
