@@ -1,5 +1,12 @@
 <script>
+  import { onMount } from 'svelte';
+
   import SvelteTooltip from 'svelte-tooltip';
+  import {
+    isCookie,
+    addFavorite,
+    deleteFavorite,
+  } from '../../stores/FavoriteStore';
 
   let pastRanks = [
     {
@@ -30,6 +37,34 @@
       console.log(clicked);
     }, 3000);
   };
+
+  const handleFavoriteClick = () => {
+    let doc = document.getElementsByClassName('img');
+    // 즐겨찾기 등록되있는 별모양
+    if (isCookie(userInfo.nickName)) {
+      console.log('in cookie');
+      deleteFavorite(userInfo.nickName);
+      doc[0].style.display = 'inline-block';
+      doc[1].style.display = 'none';
+    } else {
+      console.log('in not cookie');
+      addFavorite(userInfo.nickName);
+      doc[0].style.display = 'none';
+      doc[1].style.display = 'inline-block';
+    }
+  };
+
+  onMount(() => {
+    favoriteInit();
+  });
+
+  const favoriteInit = () => {
+    let doc = document.getElementsByClassName('img');
+    if (isCookie(userInfo.nickName)) {
+      doc[0].style.display = 'none';
+      doc[1].style.display = 'inline-block';
+    }
+  };
 </script>
 
 <div class="Header">
@@ -57,6 +92,7 @@
       />
       <img
         class="ProfileImage"
+        alt="noImage"
         src="//opgg-static.akamaized.net/images/profile_icons/profileIcon4881.jpg?image=q_auto:best&amp;v=1518361200"
       />
       <span class="Level tip" title="레벨">{userInfo.level}</span>
@@ -65,6 +101,12 @@
   <div class="Profile">
     <div class="Information">
       <span class="Name">{userInfo.nickName}</span>
+
+      <button class="Favorite" on:click={handleFavoriteClick}>
+        <span class="img off" />
+        <span class="img on" />
+        즐겨찾기</button
+      >
       <div class="Rank">
         <div class="LadderRank">
           <a
@@ -192,6 +234,32 @@
     color: #242929;
     font-size: 20px;
     font-weight: bold;
+  }
+  .Information > .Favorite {
+    margin-left: 4px;
+    color: #777;
+    border: 1px solid #c6cbcb;
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  .Information > .Favorite > .img.off {
+    zoom: 0.7;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background-position: -122px -1905px;
+    background-image: url(https://opgg-static.akamaized.net/assets/site.png?image=q_auto&v=1626239949);
+  }
+  .Information > .Favorite > .img.on {
+    zoom: 0.7;
+    display: none;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    background-position: -122px -1923px;
+    background-image: url(https://opgg-static.akamaized.net/assets/site.png?image=q_auto&v=1626239949);
   }
   .Rank {
     margin-top: -5px;
