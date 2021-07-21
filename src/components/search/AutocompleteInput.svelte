@@ -14,7 +14,7 @@
 	let isOpen = false;
 	let isLoading = true;
 	let countries: any[] = [];
-	let searchText: string = '';
+	let searchText = '';
 
 	let historyStore: string[];
 	history.subscribe((value) => {

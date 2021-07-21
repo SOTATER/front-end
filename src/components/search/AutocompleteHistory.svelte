@@ -15,7 +15,7 @@
 		favoriteStore = value;
 	});
 
-	let isRecentTab: boolean = true;
+	let isRecentTab = true;
 
 	const handleRecentTabClick = () => {
 		isRecentTab = true;
