@@ -35,7 +35,7 @@
 		</div>
 		<div class="autocomplete-rank">
 			{#if rank}
-				{rank + ' - ' + tier + 'LP'}
+				{rank + ' - ' + String(tier) + 'LP'}
 			{:else}
 				level {level}
 			{/if}

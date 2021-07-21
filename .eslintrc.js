@@ -7,6 +7,9 @@ module.exports = {
     'svelte3',
     '@typescript-eslint' 
   ],
+  rules: {
+    '@typescript-eslint/no-namespace': 0
+  },
   overrides: [
     {
       files: ['**/*.svelte'],

@@ -13,7 +13,7 @@
 	console.log('aaa');
 	let isOpen = false;
 	let isLoading = true;
-	let countries: any[] = [];
+	let countries = [];
 	let searchText = '';
 
 	let historyStore: string[];
@@ -29,15 +29,14 @@
 			isOpen = false;
 		} else {
 			isOpen = true;
-			getData(event.currentTarget.value);
+			await getData(event.currentTarget.value);
 		}
 	};
 
 	const getData = debounce(async (str: string) => {
 		try {
 			const result = await axiosInstance.get(str);
-			console.log(result);
-			countries = result.data;
+			countries = result.data as any[];
 		} catch {
 			countries = [];
 		} finally {

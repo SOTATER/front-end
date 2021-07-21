@@ -6,12 +6,12 @@
 	import AutocompleteRecentHistoryItem from './AutocompleteRecentHistoryItem.svelte';
 
 	let historyStore: string[];
-	const unsubscribeHistory = history.subscribe((value) => {
+	history.subscribe((value) => {
 		historyStore = value;
 	});
 
 	let favoriteStore: string[];
-	const unsubscribeFavorite = favorite.subscribe((value) => {
+	favorite.subscribe((value) => {
 		favoriteStore = value;
 	});
 
