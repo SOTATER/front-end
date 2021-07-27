@@ -3,7 +3,13 @@
 
 	let activeTab = 'total';
 
-	const items = [
+	interface ITab {
+		label: string;
+		component: typeof TotalTab | ChampionTab;
+		activeOption: 'total' | 'champion' | 'ingame';
+	}
+
+	const items: ITab[] = [
 		{
 			label: '종합',
 			component: TotalTab,

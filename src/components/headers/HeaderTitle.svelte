@@ -11,6 +11,11 @@
 		point: string;
 	}
 
+	interface IUserInfo {
+		level: string;
+		nickName: string;
+	}
+
 	const data: IPastRanks = {
 		season: 'S2020',
 		league: 'Platinum',
@@ -20,13 +25,13 @@
 
 	let pastRanks: IPastRanks[] = [data, data];
 
-	let userInfo = {
+	let userInfo: IUserInfo = {
 		level: '104',
 		nickName: '욕하는놈코로나19',
 	};
 
 	let clicked = 'stale';
-	let clickBtn = (clickedName: string) => {
+	let clickBtn = (clickedName: string): void => {
 		clicked = clickedName;
 		console.log(clicked);
 		setTimeout(() => {
@@ -35,7 +40,7 @@
 		}, 3000);
 	};
 
-	const handleFavoriteClick = () => {
+	const handleFavoriteClick = (): void => {
 		let doc = document.getElementsByClassName('img') as HTMLCollectionOf<HTMLElement>;
 		// 즐겨찾기 등록되있는 별모양
 		if (isCookie(userInfo.nickName)) {
@@ -55,7 +60,7 @@
 		favoriteInit();
 	});
 
-	const favoriteInit = () => {
+	const favoriteInit = (): void => {
 		let doc = document.getElementsByClassName('img') as HTMLCollectionOf<HTMLElement>;
 		if (isCookie(userInfo.nickName)) {
 			doc[0].style.display = 'none';
