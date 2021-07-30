@@ -4,28 +4,28 @@
 	import SvelteTooltip from 'svelte-tooltip';
 	import { isCookie, addFavorite, deleteFavorite } from '../../stores/FavoriteStore';
 
-	interface IPastRanks {
+	interface PastRanks {
 		season: string;
 		league: string;
 		tier: string;
 		point: string;
 	}
 
-	interface IUserInfo {
+	interface UserInfo {
 		level: string;
 		nickName: string;
 	}
 
-	const data: IPastRanks = {
+	const data: PastRanks = {
 		season: 'S2020',
 		league: 'Platinum',
 		tier: '2',
 		point: '0',
 	};
 
-	let pastRanks: IPastRanks[] = [data, data];
+	let pastRanks: PastRanks[] = [data, data];
 
-	let userInfo: IUserInfo = {
+	let userInfo: UserInfo = {
 		level: '104',
 		nickName: '욕하는놈코로나19',
 	};
