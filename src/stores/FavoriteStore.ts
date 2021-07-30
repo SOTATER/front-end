@@ -15,6 +15,6 @@ export function deleteFavorite(value: string) {
 	favorite.set(CookiesArray.get(key));
 }
 
-export function isCookie(value: string): boolean {
-	return CookiesArray.isCookie(key, value);
+export function isInCookie(value: string): boolean {
+	return CookiesArray.isInCookie(key, value);
 }

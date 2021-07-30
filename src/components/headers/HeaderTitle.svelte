@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	import SvelteTooltip from 'svelte-tooltip';
-	import { isCookie, addFavorite, deleteFavorite } from '../../stores/FavoriteStore';
+	import { isInCookie, addFavorite, deleteFavorite } from '../../stores/FavoriteStore';
 
 	interface PastRanks {
 		season: string;
@@ -44,7 +44,7 @@
 
 	const handleFavoriteClick = (): void => {
 		// 즐겨찾기 등록되있는 별모양
-		if (isCookie(userInfo.nickName)) {
+		if (isInCookie(userInfo.nickName)) {
 			console.log('in cookie');
 			deleteFavorite(userInfo.nickName);
 		} else {
@@ -59,7 +59,7 @@
 	});
 
 	const favoriteInit = (): void => {
-		if (isCookie(userInfo.nickName)) {
+		if (isInCookie(userInfo.nickName)) {
 			isVisible = false;
 		}
 	};
