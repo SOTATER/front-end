@@ -40,20 +40,18 @@
 		}, 3000);
 	};
 
+	let isVisible = true;
+
 	const handleFavoriteClick = (): void => {
-		let doc = document.getElementsByClassName('img') as HTMLCollectionOf<HTMLElement>;
 		// 즐겨찾기 등록되있는 별모양
 		if (isCookie(userInfo.nickName)) {
 			console.log('in cookie');
 			deleteFavorite(userInfo.nickName);
-			doc[0].style.display = 'inline-block';
-			doc[1].style.display = 'none';
 		} else {
 			console.log('in not cookie');
 			addFavorite(userInfo.nickName);
-			doc[0].style.display = 'none';
-			doc[1].style.display = 'inline-block';
 		}
+		isVisible = !isVisible;
 	};
 
 	onMount(() => {
@@ -61,10 +59,8 @@
 	});
 
 	const favoriteInit = (): void => {
-		let doc = document.getElementsByClassName('img') as HTMLCollectionOf<HTMLElement>;
 		if (isCookie(userInfo.nickName)) {
-			doc[0].style.display = 'none';
-			doc[1].style.display = 'inline-block';
+			isVisible = false;
 		}
 	};
 </script>
@@ -105,8 +101,8 @@
 			<span class="Name">{userInfo.nickName}</span>
 
 			<button class="Favorite" on:click={handleFavoriteClick}>
-				<span class="img off" />
-				<span class="img on" />
+				<span class="img off" class:visible={isVisible} class:invisible={!isVisible} />
+				<span class="img on" class:visible={!isVisible} class:invisible={isVisible} />
 				즐겨찾기</button
 			>
 			<div class="Rank">
@@ -247,7 +243,6 @@
 	}
 	.Information > .Favorite > .img.off {
 		zoom: 0.7;
-		display: inline-block;
 		vertical-align: middle;
 		width: 18px;
 		height: 18px;
@@ -256,13 +251,20 @@
 	}
 	.Information > .Favorite > .img.on {
 		zoom: 0.7;
-		display: none;
 		vertical-align: middle;
 		width: 18px;
 		height: 18px;
 		background-position: -122px -1923px;
 		background-image: url(https://opgg-static.akamaized.net/assets/site.png?image=q_auto&v=1626239949);
 	}
+	.visible {
+		display: inline-block;
+	}
+
+	.invisible {
+		display: none;
+	}
+
 	.Rank {
 		margin-top: -5px;
 		margin-bottom: 15px;
