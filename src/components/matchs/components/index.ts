@@ -4,3 +4,4 @@ export { default as Kda } from './Kda.svelte';
 export { default as Stats } from './Stats.svelte';
 export { default as Items } from './Items.svelte';
 export { default as FollowPlayers } from './FollowPlayers.svelte';
+export { default as StatsButton } from './StatsButton.svelte';

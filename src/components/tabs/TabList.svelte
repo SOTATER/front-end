@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ChampionTab, TotalTab } from '.';
+	import { ChampionTab, TotalTab } from './components';
 
 	let activeTab = 'total';
 

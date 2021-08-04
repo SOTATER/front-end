@@ -1,6 +1,4 @@
 <script lang="ts">
-	import App from '../../../App.svelte';
-
 	interface Kda {
 		kill: number;
 		death: number;

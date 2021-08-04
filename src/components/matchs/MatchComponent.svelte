@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { GameSettingInfo, GameStats, Kda, Stats, Items, FollowPlayers } from './components';
+	import StatsButton from './components/StatsButton.svelte';
 
 	const isWin = false;
 
@@ -111,6 +112,7 @@
 	<Stats {stats} />
 	<Items {items} {isWin} />
 	<FollowPlayers {teams} />
+	<StatsButton {isWin} />
 </div>
 
 <style>
