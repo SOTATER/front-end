@@ -1,10 +1,5 @@
 <script lang="ts">
-	interface Stats {
-		level: number;
-		cs: string;
-		killRelated: number;
-		mmr: string;
-	}
+	import type { Stats } from '../data';
 
 	export let stats: Stats;
 </script>

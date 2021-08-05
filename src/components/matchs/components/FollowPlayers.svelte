@@ -1,11 +1,5 @@
 <script lang="ts">
-	interface Summoner {
-		name: string;
-		champion: string;
-	}
-	interface Team {
-		summoners: Summoner[];
-	}
+	import type { Team } from '../data';
 
 	export let teams: Team[];
 </script>

@@ -1,14 +1,7 @@
 <script lang="ts">
-	interface GameInfo {
-		championImage: string;
-		championName: string;
-		spells: string[];
-		spellAlts: string[];
-		runes: string[];
-		runeAlts: string[];
-	}
+	import type { GameSettingInfo } from '../data';
 
-	export let gameSettingInfo: GameInfo;
+	export let gameSettingInfo: GameSettingInfo;
 </script>
 
 <div class="GameSettingInfo">

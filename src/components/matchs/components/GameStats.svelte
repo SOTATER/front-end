@@ -1,10 +1,6 @@
 <script lang="ts">
-	interface GameStats {
-		gameType: string;
-		time: string;
-		result: string;
-		gameLength: string;
-	}
+	import type { GameStats } from '../data';
+
 	export let gameStats: GameStats;
 </script>
 

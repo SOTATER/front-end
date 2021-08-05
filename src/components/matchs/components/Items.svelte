@@ -1,14 +1,5 @@
 <script lang="ts">
-	interface Item {
-		imgUrl?: string;
-		name: string;
-	}
-
-	interface Items {
-		items: Item[];
-		trinketNum: number;
-	}
-
+	import type { Items } from '../data';
 	export let items: Items;
 	export let isWin: boolean;
 

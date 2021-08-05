@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MatchComponent } from '../../matchs';
+	import { MatchList } from '../../matchs';
 </script>
 
-<MatchComponent />
+<MatchList />

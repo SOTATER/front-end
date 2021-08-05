@@ -1,12 +1,5 @@
 <script lang="ts">
-	interface Kda {
-		kill: number;
-		death: number;
-		assist: number;
-		kdaRatio: number;
-		badge?: string;
-	}
-
+	import type { Kda } from '../data';
 	export let kda: Kda;
 </script>
 
