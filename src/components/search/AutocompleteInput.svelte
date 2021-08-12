@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { push } from 'svelte-spa-router';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import { debounce } from 'lodash';
 	import axios from 'axios';
 	import AutocompleteListItem from './AutocompleteListItem.svelte';
 	import AutocompleteHistory from './AutocompleteHistory.svelte';
 	import { addHistory, history } from '../../stores/HistoryStore';
+	import { getSummoners } from '../../apis/services/summonersService';
 
 	const axiosInstance = axios.create({
 		baseURL: 'https://restcountries.eu/rest/v2/name/',
@@ -13,7 +15,7 @@
 	console.log('aaa');
 	let isOpen = false;
 	let isLoading = true;
-	let countries = [];
+	let countries: any[] = [];
 	let searchText = '';
 
 	let historyStore: string[];
@@ -49,6 +51,10 @@
 			addHistory(searchText);
 		}
 	};
+
+	const handleClick = () => {
+		return push(`/summoner/${searchText}`);
+	};
 </script>
 
 <div class="autocomplete">
@@ -58,7 +64,7 @@
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 	/>
-	<button class="search-button">.GG</button>
+	<button class="search-button" on:click={handleClick}>.GG</button>
 	<div class="autocomplete-history" class:hide-result={isOpen}>
 		{#if historyStore && historyStore.length > 0}
 			<AutocompleteHistory />

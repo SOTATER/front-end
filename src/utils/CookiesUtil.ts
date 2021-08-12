@@ -35,4 +35,12 @@ export namespace CookiesArray {
 		}
 		return values.split('$');
 	}
+
+	export function isInCookie(key: string, value: string): boolean {
+		const values = Cookies.get(key);
+		if (!values) {
+			return;
+		}
+		return values.split('$').indexOf(value) > -1;
+	}
 }
