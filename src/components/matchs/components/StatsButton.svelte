@@ -3,6 +3,7 @@
 	import ChevronUp24 from 'carbon-icons-svelte/lib/ChevronUp24';
 
 	export let isWin: boolean;
+	export let expanded: boolean;
 	let color: string;
 	if (!isWin) {
 		color = '#B71C1C';
@@ -10,14 +11,19 @@
 		color = 'C100M20';
 	}
 
-	let clicked = false;
 	const handleClick = (): void => {
-		clicked = !clicked;
+		expanded = !expanded;
 	};
 </script>
 
-<div class="StatsButton" class:win={isWin} class:lose={!isWin} on:click={handleClick}>
-	{#if !clicked}
+<div
+	class="StatsButton"
+	class:win={isWin}
+	class:lose={!isWin}
+	class:expanded
+	on:click={handleClick}
+>
+	{#if !expanded}
 		<ChevronDown24 style="fill: {color}" />
 	{:else}
 		<ChevronUp24 style="fill: {color}" />
@@ -28,9 +34,9 @@
 	.StatsButton {
 		width: 30px;
 		height: 100%;
-		margin-top: -1px;
-		margin-left: 5px;
 		border: 1px solid #000;
+
+		padding-left: 1px;
 
 		display: flex;
 		flex-direction: column;
@@ -45,7 +51,8 @@
 		border-color: #4aa1d2;
 		background: #64b1e4;
 	}
-	.sd {
-		fill: red;
+
+	.expanded {
+		border-bottom: none;
 	}
 </style>

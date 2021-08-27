@@ -51,7 +51,7 @@ export interface MatchInfo {
 	isWin: boolean;
 }
 
-const isWin = false;
+const isWin = true;
 
 const gameStats = {
 	gameType: '솔랭',
