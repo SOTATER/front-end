@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { TeamTab } from './Team';
 	import Test from './Test.svelte';
 
 	export let isWin: boolean;
@@ -7,7 +8,7 @@
 
 	interface ITab {
 		label: string;
-		component: typeof Test;
+		component: typeof Test | TeamTab;
 		activeOption: 'total' | 'team' | 'build' | 'etc';
 	}
 
@@ -19,7 +20,7 @@
 		},
 		{
 			label: '팀 분석',
-			component: Test,
+			component: TeamTab,
 			activeOption: 'team',
 		},
 		{
