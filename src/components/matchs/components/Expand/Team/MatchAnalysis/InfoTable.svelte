@@ -52,6 +52,8 @@
 
 		display: flex;
 		flex-direction: column;
+
+		margin-bottom: 25px;
 	}
 
 	.label {

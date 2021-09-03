@@ -72,3 +72,49 @@ export const circleData: CircleData = {
 	winnerValue: 42,
 	loserValue: 39,
 };
+
+export interface TableInfo {
+	circleData: CircleData;
+	winners: ProgressData[];
+	losers: ProgressData[];
+	label: string;
+}
+
+export const tableInfos: TableInfo[] = [
+	{
+		circleData,
+		winners,
+		losers,
+		label: '챔피언 처치',
+	},
+	{
+		circleData,
+		winners,
+		losers,
+		label: '골드획득량',
+	},
+	{
+		circleData,
+		winners,
+		losers,
+		label: '챔피언에게 가한 피해',
+	},
+	{
+		circleData,
+		winners,
+		losers,
+		label: '와드설치',
+	},
+	{
+		circleData,
+		winners,
+		losers,
+		label: '받은 피해량',
+	},
+	{
+		circleData,
+		winners,
+		losers,
+		label: 'CS',
+	},
+];
