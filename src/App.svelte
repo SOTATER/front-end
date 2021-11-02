@@ -22,6 +22,10 @@
 		const runes = await axios.get(
 			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/runesReforged.json`,
 		);
+		const champions = await axios.get(
+			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/champion.json`,
+		);
+		console.log(spells);
 		ApiConstants.items = items.data.data as {
 			[id: number]: Item;
 		};
@@ -30,12 +34,22 @@
 		};
 		ApiConstants.runes = {};
 		for (const bigPart of runes.data) {
+			ApiConstants.runes[bigPart.id as number] = {
+				id: bigPart.id,
+				icon: bigPart.icon,
+				key: bigPart.key,
+				longDesc: '',
+				shortDesc: '',
+				name: bigPart.name,
+			};
 			for (const smallPart of bigPart.slots) {
 				for (const rune of smallPart.runes) {
 					ApiConstants.runes[rune.id as number] = rune as Rune;
 				}
 			}
 		}
+		console.log(ApiConstants.runes);
+		ApiConstants.champions = champions.data.data;
 	}
 
 	let fetchPromise = fetchDataDragon();

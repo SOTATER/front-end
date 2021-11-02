@@ -1,7 +1,7 @@
 import type { Image } from './items';
 
-export interface Spell {
+export interface Champion {
+	key: string;
 	name: string;
-	description: string;
 	image: Image;
 }
