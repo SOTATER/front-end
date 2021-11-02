@@ -1,3 +1,4 @@
+import type { Champion } from '../schema/api/champions';
 import type { Item } from '../schema/api/items';
 import type { Rune } from '../schema/api/runes';
 import type { Spell } from '../schema/api/spells';
@@ -12,5 +13,8 @@ export namespace ApiConstants {
 	};
 	export let runes: {
 		[id: number]: Rune;
+	};
+	export let champions: {
+		[name: string]: Champion;
 	};
 }
