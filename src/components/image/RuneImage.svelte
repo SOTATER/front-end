@@ -8,7 +8,7 @@
 <div class="rune-image" use:popoverRune={{ runeId }}>
 	<img
 		class="image"
-		src={'assets/images/' + ApiConstants.runes[runeId].icon}
+		src={'http://ddragon.leagueoflegends.com/cdn/' + 'img/' + ApiConstants.runes[runeId].icon}
 		alt={ApiConstants.runes[runeId].name}
 	/>
 </div>
