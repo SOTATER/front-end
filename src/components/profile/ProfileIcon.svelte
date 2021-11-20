@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProfileImage from '../image/ProfileImage.svelte';
+	import { popoverText } from '../tooltip/Tooltip';
 	export const profileId = 9;
 	export const rank = 'gold';
 	export const level = 284;
@@ -9,6 +10,7 @@
 <div class="border-image" style="background-image: {borderImage}">
 	<ProfileImage {profileId} />
 	<span
+		use:popoverText={{ text: '레벨' }}
 		class="level-text"
 		style="background-image: url(assets/images/profileBorder/bg-levelbox.png"
 		>{level}

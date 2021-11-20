@@ -1,8 +1,18 @@
 import { KTippyProps, popover } from 'svelte-ktippy';
+
+import TextTooltip from './TextTooltip.svelte';
 import ItemTooltip from './ItemTooltip.svelte';
 import SpellTooltip from './SpellTooltip.svelte';
 import RuneTooltip from './RuneTooltip.svelte';
 
+export function popoverText(anchorNode: HTMLElement, props: TextTooltipProps): PopoverFunction {
+	const tippyProps: KTippyProps = {
+		...defaultProps,
+		component: TextTooltip,
+		props,
+	};
+	return popover(anchorNode, tippyProps);
+}
 export function popoverItem(anchorNode: HTMLElement, props: ItemTooltipProps): PopoverFunction {
 	const tippyProps: KTippyProps = {
 		...defaultProps,
@@ -28,6 +38,10 @@ export function popoverRune(anchorNode: HTMLElement, props: RuneTooltipProps): P
 		props,
 	};
 	return popover(anchorNode, tippyProps);
+}
+
+export interface TextTooltipProps {
+	text: string;
 }
 
 export interface ItemTooltipProps {
