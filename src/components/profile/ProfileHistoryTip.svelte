@@ -1,12 +1,21 @@
 <script lang="ts">
-	export const season = 'S2020';
-	export const tier = 'gold';
+	import { popoverText } from '../tooltip/Tooltip';
+	export let season = 'S2020';
+	export let tier = 'gold';
+	export let tooltip: string | undefined = undefined;
 </script>
 
-<li class="history-tip">
-	<b>{season}</b>
-	{' ' + tier}
-</li>
+{#if tooltip}
+	<li class="history-tip" use:popoverText={{ text: tooltip }}>
+		<b>{season}</b>
+		{' ' + tier}
+	</li>
+{:else}
+	<li class="history-tip">
+		<b>{season}</b>
+		{' ' + tier}
+	</li>
+{/if}
 
 <style>
 	.history-tip {
