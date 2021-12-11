@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ProfileImage from '../image/ProfileImage.svelte';
 	import { popoverText } from '../tooltip/Tooltip';
-	export const profileId = 9;
-	export const rank = 'gold';
-	export const level = 284;
+	export let profileId = 9;
+	export let rank = 'gold';
+	export let level = 284;
 	const borderImage = 'url(assets/images/profileBorder/' + rank + '.png)';
 </script>
 
