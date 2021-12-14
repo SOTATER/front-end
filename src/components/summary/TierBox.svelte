@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { popoverText } from '../tooltip/Tooltip';
+
 	const rankType = '솔로랭크';
 	const rank = 'Gold';
 	const tier = 4;
@@ -8,6 +10,7 @@
 	const winRatio = 53;
 	const leagueName = '제드의 검투사들';
 
+	const tooltip = rank && tier ? '솔랭' : null;
 	const rankTier = rank && tier ? `${rank} ${tier}` : 'Unranked';
 
 	const getTierImage = (rank?: string, tier?: number) => {
@@ -18,9 +21,15 @@
 
 <div class="Box">
 	<div class="SummonerRatingMedium">
-		<div class="Medal">
-			<img class="Image" alt="tier" src={getTierImage(rank, tier)} />
-		</div>
+		{#if tooltip}
+			<div class="Medal" use:popoverText={{ text: tooltip }}>
+				<img class="Image" alt="tier" src={getTierImage(rank, tier)} />
+			</div>
+		{:else}
+			<div class="Medal">
+				<img class="Image" alt="tier" src={getTierImage(rank, tier)} />
+			</div>
+		{/if}
 		<div class="TierRankInfo">
 			<div class="RankType">{rankType}</div>
 			<div class="TierRank" class:unranked={!rank || !tier}>{rankTier}</div>
