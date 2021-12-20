@@ -1,21 +1,21 @@
 <script lang="ts">
 	import { popoverText } from '../tooltip/Tooltip';
 
-	const rankType = '솔로랭크';
-	const rank = 'Gold';
-	const tier = 4;
-	const leaguePoint = 63;
-	const wins = 135;
-	const loses = 122;
-	const winRatio = 53;
-	const leagueName = '제드의 검투사들';
+	export let rankType = '솔로랭크';
+	export let rank = 'Gold';
+	export let tier = 4;
+	export let leaguePoint = 63;
+	export let wins = 135;
+	export let loses = 122;
+	export let winRatio = 53;
+	export let leagueName = '제드의 검투사들';
 
-	const tooltip = rank && tier ? '솔랭' : null;
+	const tooltip = rank ? '솔랭' : null;
 	const rankTier = rank && tier ? `${rank} ${tier}` : 'Unranked';
 
 	const getTierImage = (rank?: string, tier?: number) => {
 		const rankTier = rank && tier ? `${rank.toLowerCase()}_${tier}` : 'default';
-		return `//opgg-static.akamaized.net/images/medals/${rankTier}.png?image=q_auto:best&v=1`;
+		return `assets/images/rankedEmblems/${rankTier}.png`;
 	};
 </script>
 

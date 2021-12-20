@@ -1,17 +1,17 @@
 <script lang="ts">
-	const rankType = '자유 5:5 랭크';
-	const rank = 'Silver';
-	const tier = 1;
-	const leaguePoint = 9;
-	const wins = 50;
-	const loses = 52;
-	const winRatio = 49;
+	export let rankType = '자유 5:5 랭크';
+	export let rank = 'Silver';
+	export let tier = 1;
+	export let leaguePoint = 9;
+	export let wins = 50;
+	export let loses = 52;
+	export let winRatio = 49;
 
 	const rankTier = rank && tier ? `${rank} ${tier}` : 'Unranked';
 
 	const getSubTierImage = (rank?: string, tier?: number) => {
 		const rankTier = rank && tier ? `${rank.toLowerCase()}_${tier}` : 'default';
-		return `//opgg-static.akamaized.net/images/medals/${rankTier}.png?image=q_auto:best&v=1`;
+		return `assets/images/rankedEmblems/${rankTier}.png`;
 	};
 </script>
 
