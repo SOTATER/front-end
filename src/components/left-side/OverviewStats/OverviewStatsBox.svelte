@@ -6,20 +6,69 @@
 		OverviewStatsTabPanelItem,
 		OverviewStatsTabs,
 	} from '.';
+	import type { OverviewStats } from './OverviewStatsTabPanelItem.svelte';
 
-	let data = {
-		all: [
-			{ championName: 'Jayce' },
-			{ championName: 'Kassadin' },
-			{ championName: 'Sylas' },
-			{ championName: 'Viktor' },
-			{ championName: 'Lux' },
-			{ championName: 'Akali' },
-			{ championName: 'Cassiopeia' },
-		],
-		soloranked: {},
-		flexranked5v5: {},
-	};
+	let allStats: OverviewStats[] = [
+		{
+			championName: 'Jayce',
+			championMinionKillAverage: 196.8,
+			championMinionKillPerMin: 7.2,
+			kill: 7.0,
+			death: 3.75,
+			assist: 7.94,
+		},
+		{
+			championName: 'Kassadin',
+			championMinionKillAverage: 179.8,
+			championMinionKillPerMin: 6.5,
+			kill: 6.8,
+			death: 3.2,
+			assist: 5.4,
+		},
+		{
+			championName: 'Sylas',
+			championMinionKillAverage: 153.0,
+			championMinionKillPerMin: 4.6,
+			kill: 8.25,
+			death: 7.25,
+			assist: 7.5,
+		},
+		{
+			championName: 'Viktor',
+			championMinionKillAverage: 211.8,
+			championMinionKillPerMin: 6.1,
+			kill: 4.75,
+			death: 5.75,
+			assist: 6.0,
+		},
+		{
+			championName: 'Lux',
+			championMinionKillAverage: 153.3,
+			championMinionKillPerMin: 5.6,
+			kill: 5.33,
+			death: 4.0,
+			assist: 8.0,
+		},
+		{
+			championName: 'Akali',
+			championMinionKillAverage: 181.5,
+			championMinionKillPerMin: 5.5,
+			kill: 7.5,
+			death: 7.0,
+			assist: 4.0,
+		},
+		{
+			championName: 'Cassiopeia',
+			championMinionKillAverage: 120.0,
+			championMinionKillPerMin: 5.3,
+			kill: 4.0,
+			death: 4.0,
+			assist: 2.5,
+		},
+	];
+	// TODO: 솔랭, 자랭 추가
+	let solorankedStats: OverviewStats[] = [];
+	let flexranked5v5Stats: OverviewStats[] = [];
 </script>
 
 <div class="stats-box">
@@ -36,9 +85,10 @@
 		</OverviewStatsTabList>
 		<div class="Content">
 			<OverviewStatsTabPanel>
-				{#each data.all as { championName }}
-					<OverviewStatsTabPanelItem {championName} />
+				{#each allStats as stats}
+					<OverviewStatsTabPanelItem {stats} />
 				{/each}
+				<!-- TODO: 하드 코딩한 부분 제거 -->
 				<div class="MoreButton">
 					<a
 						href="/summoner/champions/userName=%EC%88%98%ED%8D%BC%ED%94%BC%EA%B7%B8%EB%AF%B8"
