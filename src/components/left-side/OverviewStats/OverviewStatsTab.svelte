@@ -1,10 +1,7 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unsafe-return */
-	import { getContext } from 'svelte';
-	import { TABS } from './OverviewStatsTabs.svelte';
+	import { registerTab, selectedTab, selectTab } from '../../../stores/OverviewStatsStore';
 
 	const tab = {};
-	const { registerTab, selectTab, selectedTab } = getContext(TABS);
 	registerTab(tab);
 </script>
 

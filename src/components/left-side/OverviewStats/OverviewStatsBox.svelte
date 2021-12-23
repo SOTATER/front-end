@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		OverviewStatsTab,
-		OverviewStatsTabList,
-		OverviewStatsTabPanel,
-		OverviewStatsTabPanelItem,
-		OverviewStatsTabs,
-	} from '.';
+	import { OverviewStatsTab, OverviewStatsTabPanel, OverviewStatsTabPanelItem } from '.';
 	import MoreButton from './MoreButton.svelte';
 	import type { OverviewStats } from './OverviewStatsTabPanelItem.svelte';
 
@@ -209,8 +203,8 @@
 </script>
 
 <div class="stats-box">
-	<OverviewStatsTabs>
-		<OverviewStatsTabList>
+	<div>
+		<div class="TabList">
 			<OverviewStatsTab>
 				프리시즌<br />
 				전체
@@ -219,7 +213,7 @@
 			<OverviewStatsTab>
 				자유랭크<br />5v5
 			</OverviewStatsTab>
-		</OverviewStatsTabList>
+		</div>
 		<div class="Content">
 			<OverviewStatsTabPanel>
 				{#if allStats.length === 0}
@@ -252,7 +246,7 @@
 				{/if}
 			</OverviewStatsTabPanel>
 		</div>
-	</OverviewStatsTabs>
+	</div>
 </div>
 
 <style>
@@ -262,6 +256,11 @@
 		box-shadow: 0 1px #dcdfdf;
 		background: #f2f2f2;
 		border-radius: 2px;
+	}
+	.TabList {
+		display: table;
+		width: 100%;
+		table-layout: fixed;
 	}
 	.Content {
 		background: #ededed;
