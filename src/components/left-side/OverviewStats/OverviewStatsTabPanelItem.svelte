@@ -6,6 +6,8 @@
 		kill: number;
 		death: number;
 		assist: number;
+		winRatio: number;
+		playTimes: number;
 	}
 </script>
 
@@ -21,6 +23,8 @@
 		kill: 0,
 		death: 0,
 		assist: 0,
+		winRatio: 0,
+		playTimes: 0,
 	};
 
 	const championKoreanName = ApiConstants.champions[stats.championName].name;
@@ -70,10 +74,11 @@
 			<span>{getRoundNum(stats.assist)}</span>
 		</div>
 	</div>
-	<!-- TODO: 하드코딩한 부분 제거 -->
 	<div class="Played">
-		<div class="WinRatio red tip tpd-delegation-uid-1" title="">69%</div>
-		<div class="Title">16 게임</div>
+		<div class="WinRatio" class:red={stats.winRatio > 60} use:popoverText={{ text: '승률' }}>
+			{`${stats.winRatio}%`}
+		</div>
+		<div class="Title">{`${stats.playTimes} 게임`}</div>
 	</div>
 </div>
 
@@ -146,5 +151,17 @@
 		width: 70px;
 		line-height: 1.8;
 		vertical-align: middle;
+	}
+	.ChampionBox > .Played > .WinRatio {
+		color: #879292;
+		font-weight: bold;
+		font-size: 13px;
+	}
+	.ChampionBox > .Played > .WinRatio.red {
+		color: #c6443e;
+	}
+	.ChampionBox > .Played > .Title {
+		font-size: 11px;
+		white-space: nowrap;
 	}
 </style>

@@ -17,6 +17,8 @@
 			kill: 7.0,
 			death: 3.75,
 			assist: 7.94,
+			winRatio: 69,
+			playTimes: 16,
 		},
 		{
 			championName: 'Kassadin',
@@ -25,6 +27,8 @@
 			kill: 6.8,
 			death: 3.2,
 			assist: 5.4,
+			winRatio: 80,
+			playTimes: 5,
 		},
 		{
 			championName: 'Sylas',
@@ -33,6 +37,8 @@
 			kill: 8.25,
 			death: 7.25,
 			assist: 7.5,
+			winRatio: 25,
+			playTimes: 4,
 		},
 		{
 			championName: 'Viktor',
@@ -41,6 +47,8 @@
 			kill: 4.75,
 			death: 5.75,
 			assist: 6.0,
+			winRatio: 25,
+			playTimes: 4,
 		},
 		{
 			championName: 'Lux',
@@ -49,6 +57,8 @@
 			kill: 5.33,
 			death: 4.0,
 			assist: 8.0,
+			winRatio: 33,
+			playTimes: 3,
 		},
 		{
 			championName: 'Akali',
@@ -57,6 +67,8 @@
 			kill: 7.5,
 			death: 7.0,
 			assist: 4.0,
+			winRatio: 0,
+			playTimes: 2,
 		},
 		{
 			championName: 'Cassiopeia',
@@ -65,6 +77,8 @@
 			kill: 4.0,
 			death: 4.0,
 			assist: 2.5,
+			winRatio: 0,
+			playTimes: 2,
 		},
 	];
 	// TODO: 솔랭, 자랭 추가
