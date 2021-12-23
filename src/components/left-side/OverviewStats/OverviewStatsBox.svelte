@@ -6,6 +6,7 @@
 		OverviewStatsTabPanelItem,
 		OverviewStatsTabs,
 	} from '.';
+	import MoreButton from './MoreButton.svelte';
 	import type { OverviewStats } from './OverviewStatsTabPanelItem.svelte';
 
 	let allStats: OverviewStats[] = [
@@ -88,13 +89,7 @@
 				{#each allStats as stats}
 					<OverviewStatsTabPanelItem {stats} />
 				{/each}
-				<!-- TODO: 하드 코딩한 부분 제거 -->
-				<div class="MoreButton">
-					<a
-						href="/summoner/champions/userName=%EC%88%98%ED%8D%BC%ED%94%BC%EA%B7%B8%EB%AF%B8"
-						class="Action">더 보기 + 다른 시즌 보기</a
-					>
-				</div>
+				<MoreButton />
 			</OverviewStatsTabPanel>
 			<OverviewStatsTabPanel>
 				<div class="ChampionBox Ranked">
@@ -358,12 +353,7 @@
 						<div class="Title">2 게임</div>
 					</div>
 				</div>
-				<div id="left_champion_more" class="MoreButton">
-					<a
-						href="/summoner/champions/userName=%EC%88%98%ED%8D%BC%ED%94%BC%EA%B7%B8%EB%AF%B8"
-						class="Action">더 보기 + 다른 시즌 보기</a
-					>
-				</div>
+				<MoreButton />
 			</OverviewStatsTabPanel>
 			<OverviewStatsTabPanel />
 		</div>
@@ -380,14 +370,5 @@
 	}
 	.Content {
 		background: #ededed;
-	}
-	.MoreButton > .Action {
-		display: block;
-		text-decoration: none;
-		padding: 11px 0 10px;
-		line-height: 15px;
-		font-size: 12px;
-		text-align: center;
-		color: #555e5e;
 	}
 </style>
