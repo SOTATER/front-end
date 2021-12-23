@@ -1,11 +1,20 @@
 <script lang="ts">
-	import { link, location } from 'svelte-spa-router';
+	import { location, push } from 'svelte-spa-router';
 
-	const userName: string = ($location as string).split('/')?.pop() || '';
+	const handleClick = () => {
+		const path = $location as string;
+		const userName: string = path.split('/')?.pop() || '';
+		const newPath = `/summoner/champions/${userName}`;
+		if (path === newPath) {
+			window.location.reload();
+		} else {
+			return push(newPath);
+		}
+	};
 </script>
 
 <div class="MoreButton">
-	<a href={`/summoner/champions/${userName}`} use:link class="Action">더 보기 + 다른 시즌 보기</a>
+	<a href="/" on:click|preventDefault={handleClick} class="Action">더 보기 + 다른 시즌 보기</a>
 </div>
 
 <style>
