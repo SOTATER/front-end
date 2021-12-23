@@ -30,6 +30,19 @@
 	const getRoundNum = (num: number) => {
 		return (Math.round(num * 10) / 10).toFixed(1);
 	};
+
+	const getKdaColor = (kda: string) => {
+		const num = parseFloat(kda);
+		let className = 'normal';
+		if (num > 5) {
+			className = 'orange';
+		} else if (num > 4) {
+			className = 'blue';
+		} else if (num > 3) {
+			className = 'green';
+		}
+		return `KDA ${className}`;
+	};
 </script>
 
 <div class="ChampionBox">
@@ -45,8 +58,7 @@
 		</div>
 	</div>
 	<div class="PersonalKDA">
-		<!-- TODO: 평점 색상 로직 추가 -->
-		<div class="KDA green" use:popoverText={{ text: kdaTooltip }}>
+		<div class={getKdaColor(kda)} use:popoverText={{ text: kdaTooltip }}>
 			<span>{`${kda}:1`}</span>
 			<span>평점</span>
 		</div>
@@ -76,9 +88,10 @@
 	.ChampionBox > .Face {
 		display: table-cell;
 		width: 60px;
-		padding: 5px 0 0 0;
+		padding: 4px 0px 4px 15px;
 		text-align: right;
 		vertical-align: middle;
+		box-sizing: border-box;
 	}
 	.ChampionBox > .ChampionInfo {
 		display: table-cell;
@@ -113,6 +126,12 @@
 	}
 	.ChampionBox > .PersonalKDA > .KDA.green {
 		color: #2daf7f;
+	}
+	.ChampionBox > .PersonalKDA > .KDA.blue {
+		color: #1f8ecd;
+	}
+	.ChampionBox > .PersonalKDA > .KDA.orange {
+		color: #e19205;
 	}
 	.ChampionBox > .PersonalKDA > .KDAEach {
 		font-size: 12px;

@@ -9,8 +9,7 @@
 </script>
 
 <li class="Item" class:active={$selectedTab === tab}>
-	<!-- svelte-ignore a11y-invalid-attribute -->
-	<a href="#" on:click|preventDefault={() => selectTab(tab)}>
+	<a href="/" on:click|preventDefault={() => selectTab(tab)}>
 		<slot />
 	</a>
 </li>
