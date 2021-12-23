@@ -58,7 +58,7 @@
 			{championKoreanName}
 		</div>
 		<div class="ChampionMinionKill" use:popoverText={{ text: '평균 CS (CS/분)' }}>
-			{`CS ${stats.championMinionKillAverage} (${stats.championMinionKillPerMin})`}
+			{`CS ${stats.championMinionKillAverage.toFixed(1)} (${stats.championMinionKillPerMin})`}
 		</div>
 	</div>
 	<div class="PersonalKDA">
@@ -104,6 +104,7 @@
 		text-align: left;
 		vertical-align: middle;
 		padding-left: 10px;
+		box-sizing: border-box;
 	}
 	.ChampionBox > .ChampionInfo > .ChampionName {
 		width: 70px;

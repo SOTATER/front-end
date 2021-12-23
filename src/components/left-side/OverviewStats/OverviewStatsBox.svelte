@@ -81,9 +81,131 @@
 			playTimes: 2,
 		},
 	];
-	// TODO: 솔랭, 자랭 추가
-	let solorankedStats: OverviewStats[] = [];
-	let flexranked5v5Stats: OverviewStats[] = [];
+	let solorankedStats: OverviewStats[] = [
+		{
+			championName: 'Jayce',
+			championMinionKillAverage: 198.5,
+			championMinionKillPerMin: 7.2,
+			kill: 6.8,
+			death: 3.73,
+			assist: 7.73,
+			winRatio: 67,
+			playTimes: 15,
+		},
+		{
+			championName: 'Kassadin',
+			championMinionKillAverage: 179.8,
+			championMinionKillPerMin: 6.5,
+			kill: 6.8,
+			death: 3.2,
+			assist: 5.4,
+			winRatio: 80,
+			playTimes: 5,
+		},
+		{
+			championName: 'Viktor',
+			championMinionKillAverage: 220.0,
+			championMinionKillPerMin: 6.5,
+			kill: 6.33,
+			death: 5.33,
+			assist: 5.67,
+			winRatio: 33,
+			playTimes: 3,
+		},
+		{
+			championName: 'Sylas',
+			championMinionKillAverage: 160.0,
+			championMinionKillPerMin: 4.7,
+			kill: 7.67,
+			death: 7.33,
+			assist: 7.67,
+			winRatio: 33,
+			playTimes: 3,
+		},
+
+		{
+			championName: 'Lux',
+			championMinionKillAverage: 153.3,
+			championMinionKillPerMin: 5.6,
+			kill: 5.33,
+			death: 4.0,
+			assist: 8.0,
+			winRatio: 33,
+			playTimes: 3,
+		},
+		{
+			championName: 'Akali',
+			championMinionKillAverage: 181.5,
+			championMinionKillPerMin: 5.5,
+			kill: 7.5,
+			death: 7.0,
+			assist: 4.0,
+			winRatio: 0,
+			playTimes: 2,
+		},
+		{
+			championName: 'Cassiopeia',
+			championMinionKillAverage: 120.0,
+			championMinionKillPerMin: 5.3,
+			kill: 4.0,
+			death: 4.0,
+			assist: 2.5,
+			winRatio: 0,
+			playTimes: 2,
+		},
+	];
+	let flexranked5v5Stats: OverviewStats[] = [
+		{
+			championName: 'Vex',
+			championMinionKillAverage: 162.5,
+			championMinionKillPerMin: 5.8,
+			kill: 5.0,
+			death: 6.5,
+			assist: 6.5,
+			winRatio: 0,
+			playTimes: 2,
+		},
+		{
+			championName: 'Jayce',
+			championMinionKillAverage: 171.0,
+			championMinionKillPerMin: 7.7,
+			kill: 10.0,
+			death: 4.0,
+			assist: 11.0,
+			winRatio: 100,
+			playTimes: 1,
+		},
+		{
+			championName: 'Ashe',
+			championMinionKillAverage: 132.0,
+			championMinionKillPerMin: 5.3,
+			kill: 1.0,
+			death: 6.0,
+			assist: 4.0,
+			winRatio: 0,
+			playTimes: 1,
+		},
+		{
+			championName: 'Viktor',
+			championMinionKillAverage: 187.0,
+			championMinionKillPerMin: 5.1,
+			kill: 0.0,
+			death: 7.0,
+			assist: 7.0,
+			winRatio: 0,
+			playTimes: 1,
+		},
+		{
+			championName: 'Sylas',
+			championMinionKillAverage: 132.0,
+			championMinionKillPerMin: 4.3,
+			kill: 10.0,
+			death: 7.0,
+			assist: 7.0,
+			winRatio: 0,
+			playTimes: 1,
+		},
+	];
 </script>
 
 <div class="stats-box">
@@ -100,276 +222,35 @@
 		</OverviewStatsTabList>
 		<div class="Content">
 			<OverviewStatsTabPanel>
-				{#each allStats as stats}
-					<OverviewStatsTabPanelItem {stats} />
-				{/each}
-				<MoreButton />
+				{#if allStats.length === 0}
+					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
+				{:else}
+					{#each allStats as stats}
+						<OverviewStatsTabPanelItem {stats} />
+					{/each}
+					<MoreButton />
+				{/if}
 			</OverviewStatsTabPanel>
 			<OverviewStatsTabPanel>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="제이스">
-						<a href="/champion/jayce/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Jayce.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="제이스"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="제이스">
-							<a href="/champion/jayce/statistics" target="_blank"> 제이스 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 198.5 (7.2)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA green tip" title="(K 6.8 + A 7.73) / D 3.73">
-							<span class="KDA">3.89:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">6.8</span>
-							<span class="Bar">/</span>
-							<span class="Death">3.7</span>
-							<span class="Bar">/</span>
-							<span class="Assist">7.7</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio red tip" title="승률">67%</div>
-						<div class="Title">15 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="카사딘">
-						<a href="/champion/kassadin/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Kassadin.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="카사딘"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="카사딘">
-							<a href="/champion/kassadin/statistics" target="_blank"> 카사딘 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 179.8 (6.5)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA green tip" title="(K 6.8 + A 5.4) / D 3.2">
-							<span class="KDA">3.81:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">6.8</span>
-							<span class="Bar">/</span>
-							<span class="Death">3.2</span>
-							<span class="Bar">/</span>
-							<span class="Assist">5.4</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio red tip" title="승률">80%</div>
-						<div class="Title">5 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="빅토르">
-						<a href="/champion/viktor/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="빅토르"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="빅토르">
-							<a href="/champion/viktor/statistics" target="_blank"> 빅토르 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 220.0 (6.5)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA normal tip" title="(K 6.33 + A 5.67) / D 5.33">
-							<span class="KDA">2.25:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">6.3</span>
-							<span class="Bar">/</span>
-							<span class="Death">5.3</span>
-							<span class="Bar">/</span>
-							<span class="Assist">5.7</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio normal tip" title="승률">33%</div>
-						<div class="Title">3 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="사일러스">
-						<a href="/champion/sylas/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Sylas.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="사일러스"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="사일러스">
-							<a href="/champion/sylas/statistics" target="_blank"> 사일러스 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 160.0 (4.7)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA normal tip" title="(K 7.67 + A 7.67) / D 7.33">
-							<span class="KDA">2.09:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">7.7</span>
-							<span class="Bar">/</span>
-							<span class="Death">7.3</span>
-							<span class="Bar">/</span>
-							<span class="Assist">7.7</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio normal tip" title="승률">33%</div>
-						<div class="Title">3 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="럭스">
-						<a href="/champion/lux/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Lux.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="럭스"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="럭스">
-							<a href="/champion/lux/statistics" target="_blank"> 럭스 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 153.3 (5.6)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA green tip" title="(K 5.33 + A 8) / D 4">
-							<span class="KDA">3.33:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">5.3</span>
-							<span class="Bar">/</span>
-							<span class="Death">4.0</span>
-							<span class="Bar">/</span>
-							<span class="Assist">8.0</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio normal tip" title="승률">33%</div>
-						<div class="Title">3 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="아칼리">
-						<a href="/champion/akali/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Akali.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="아칼리"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="아칼리">
-							<a href="/champion/akali/statistics" target="_blank"> 아칼리 </a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 181.5 (5.5)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA normal tip" title="(K 7.5 + A 4) / D 7">
-							<span class="KDA">1.64:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">7.5</span>
-							<span class="Bar">/</span>
-							<span class="Death">7.0</span>
-							<span class="Bar">/</span>
-							<span class="Assist">4.0</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio normal tip" title="승률">0%</div>
-						<div class="Title">2 게임</div>
-					</div>
-				</div>
-				<div class="ChampionBox Ranked">
-					<div class="Face" title="카시오페아">
-						<a href="/champion/cassiopeia/statistics" target="_blank">
-							<img
-								src="//opgg-static.akamaized.net/images/lol/champion/Cassiopeia.png?image=c_scale,q_auto,w_45&amp;v=1637122822"
-								width="45"
-								class="ChampionImage"
-								alt="카시오페아"
-							/>
-						</a>
-					</div>
-					<div class="ChampionInfo">
-						<div class="ChampionName" title="카시오페아">
-							<a href="/champion/cassiopeia/statistics" target="_blank">
-								카시오페아
-							</a>
-						</div>
-						<div class="ChampionMinionKill tip" title="평균 CS (CS/분)">
-							CS 120.0 (5.3)
-						</div>
-					</div>
-					<div class="PersonalKDA">
-						<div class="KDA normal tip" title="(K 4 + A 2.5) / D 4">
-							<span class="KDA">1.63:1</span>
-							<span class="Text">평점</span>
-						</div>
-						<div class="KDAEach">
-							<span class="Kill">4.0</span>
-							<span class="Bar">/</span>
-							<span class="Death">4.0</span>
-							<span class="Bar">/</span>
-							<span class="Assist">2.5</span>
-						</div>
-					</div>
-					<div class="Played">
-						<div class="WinRatio normal tip" title="승률">0%</div>
-						<div class="Title">2 게임</div>
-					</div>
-				</div>
-				<MoreButton />
+				{#if solorankedStats.length === 0}
+					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
+				{:else}
+					{#each solorankedStats as stats}
+						<OverviewStatsTabPanelItem {stats} />
+					{/each}
+					<MoreButton />
+				{/if}
 			</OverviewStatsTabPanel>
-			<OverviewStatsTabPanel />
+			<OverviewStatsTabPanel>
+				{#if flexranked5v5Stats.length === 0}
+					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
+				{:else}
+					{#each flexranked5v5Stats as stats}
+						<OverviewStatsTabPanelItem {stats} />
+					{/each}
+					<MoreButton />
+				{/if}
+			</OverviewStatsTabPanel>
 		</div>
 	</OverviewStatsTabs>
 </div>
@@ -384,5 +265,13 @@
 	}
 	.Content {
 		background: #ededed;
+	}
+	.ErrorMessage {
+		display: block;
+		padding: 126px 0 60px;
+		text-align: center;
+		background: url('/assets/images/bg-noData.png') 50% 50px no-repeat;
+		font-size: 16px;
+		color: #555e5e;
 	}
 </style>
