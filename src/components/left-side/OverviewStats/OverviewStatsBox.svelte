@@ -1,8 +1,8 @@
 <script lang="ts">
 	import MoreButton from './MoreButton.svelte';
+	import type { OverviewStats } from './OverviewStats';
 	import OverviewStatsTab from './OverviewStatsTab.svelte';
 	import OverviewStatsTabPanel from './OverviewStatsTabPanel.svelte';
-	import type { OverviewStats } from './OverviewStatsTabPanelItem.svelte';
 	import OverviewStatsTabPanelItem from './OverviewStatsTabPanelItem.svelte';
 
 	let allStats: OverviewStats[] = [

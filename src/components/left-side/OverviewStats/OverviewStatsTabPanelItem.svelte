@@ -1,20 +1,8 @@
-<script lang="ts" context="module">
-	export interface OverviewStats {
-		championName: string;
-		championMinionKillAverage: number;
-		championMinionKillPerMin: number;
-		kill: number;
-		death: number;
-		assist: number;
-		winRatio: number;
-		playTimes: number;
-	}
-</script>
-
 <script lang="ts">
 	import { ApiConstants } from '../../../apis/ApiConstants';
 	import ChampionImageCircle from '../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../tooltip/Tooltip';
+	import type { OverviewStats } from './OverviewStats';
 
 	export let stats: OverviewStats = {
 		championName: '',
