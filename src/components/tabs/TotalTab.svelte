@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { SubTierBox, TierBox } from '../summary';
+	import { LastSevenDays, SubTierBox, TierBox } from '../left-side';
 </script>
 
 <div class="Content">
 	<div class="SideContent">
 		<TierBox />
 		<SubTierBox />
+		<LastSevenDays />
 	</div>
 	<div class="RealContent" />
 </div>
