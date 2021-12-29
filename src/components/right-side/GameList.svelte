@@ -2,7 +2,7 @@
 	import GameListTab from './GameListTab.svelte';
 	import GameListTabPanel from './GameListTabPanel.svelte';
 	import GameTypeSelect from './GameTypeSelect.svelte';
-	import Search from './Search.svelte';
+	import SearchTextfield from './search/SearchTextfield.svelte';
 </script>
 
 <div class="GameListContainer">
@@ -16,7 +16,7 @@
 					<GameTypeSelect />
 				</GameListTab>
 			</ul>
-			<Search />
+			<SearchTextfield />
 		</div>
 	</div>
 	<div class="Content">
