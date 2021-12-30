@@ -88,7 +88,7 @@
 		display: block;
 		padding: 126px 0 60px;
 		text-align: center;
-		background: url(../css3/sprite/images/bg-noData.png) 50% 50px no-repeat;
+		background: url(/assets/images/bg-noData.png) 50% 50px no-repeat;
 		font-size: 16px;
 		color: #555e5e;
 	}
