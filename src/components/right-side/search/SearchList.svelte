@@ -1,13 +1,16 @@
 <script lang="ts">
 	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 	import { ApiConstants } from '../../../apis/ApiConstants';
+	import { clickOutside } from '../../../utils/ClickOutsideUtil';
 	import { disassembleChosung, getChosung } from '../../../utils/SearchUtil';
 	import SearchListItem from './SearchListItem.svelte';
 
 	export let recentChampionList = [];
 	export let allChampionList = [];
-	export let visible = false;
+	export let focus = false;
 	export let input = '';
+
+	let visible = false;
 
 	// 입력에 따른 챔피언 필터링, 한글 이름순으로 정렬
 	$: filterChampionList = Object.entries(ApiConstants.champions)
@@ -29,7 +32,7 @@
 	$: searchChampionList = input === '' ? allChampionList : filterChampionList;
 </script>
 
-<div class="SearchContent" class:hidden={!visible}>
+<div class="SearchContent" class:hidden={!visible} use:clickOutside={() => (visible = focus)}>
 	<ul class="SelectMatchChampionList">
 		<li class="Item Recent">
 			<div class="Header">최근 플레이</div>

@@ -4,21 +4,21 @@
 
 	// TODO: 최근 플레이한 챔피언 목록 가져오기
 	const recentChampionList = [
-		{ id: '78', name: '뽀삐' },
-		{ id: '876', name: '릴리아' },
-		{ id: '126', name: '제이스' },
-		{ id: '202', name: '진' },
-		{ id: '55', name: '카타리나' },
-		{ id: '53', name: '블리츠크랭크' },
-		{ id: '50', name: '스웨인' },
-		{ id: '79', name: '그라가스' },
-		{ id: '555', name: '파이크' },
-		{ id: '81', name: '이즈리얼' },
-		{ id: '38', name: '카사딘' },
-		{ id: '104', name: '그레이브즈' },
-		{ id: '92', name: '리븐' },
-		{ id: '76', name: '니달리' },
-		{ id: '112', name: '빅토르' },
+		{ key: '78', name: '뽀삐' },
+		{ key: '876', name: '릴리아' },
+		{ key: '126', name: '제이스' },
+		{ key: '202', name: '진' },
+		{ key: '55', name: '카타리나' },
+		{ key: '53', name: '블리츠크랭크' },
+		{ key: '50', name: '스웨인' },
+		{ key: '79', name: '그라가스' },
+		{ key: '555', name: '파이크' },
+		{ key: '81', name: '이즈리얼' },
+		{ key: '38', name: '카사딘' },
+		{ key: '104', name: '그레이브즈' },
+		{ key: '92', name: '리븐' },
+		{ key: '76', name: '니달리' },
+		{ key: '112', name: '빅토르' },
 		{ id: '103', name: '아리' },
 	];
 
@@ -32,8 +32,7 @@
 		return 0;
 	});
 
-	let visible = false;
-
+	let focus = false;
 	let input = '';
 </script>
 
@@ -47,13 +46,14 @@
 					class="Input"
 					placeholder="챔피언 검색"
 					bind:value={input}
-					on:focus={() => (visible = true)}
+					on:focus={() => (focus = true)}
+					on:blur={() => (focus = false)}
 				/>
 				<div class="Action">
 					<i class="__spSite __spSite-227" />
 				</div>
 			</div>
-			<SearchList bind:input bind:visible {recentChampionList} {allChampionList} />
+			<SearchList bind:input bind:focus {recentChampionList} {allChampionList} />
 		</div>
 	</div>
 </div>
