@@ -1,7 +1,7 @@
 <script lang="ts">
-	export const radius = 90;
-	export const blue = 35;
-	export const red = 65;
+	export let radius = 90;
+	export let blue = 35;
+	export let red = 65;
 	export let mode: 'winningRate' | 'normal' = 'winningRate';
 	const width = mode === 'winningRate' ? 6 : 2.5;
 	const blueRate = (blue / (blue + red)) * 100;
