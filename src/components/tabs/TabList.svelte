@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { location } from 'svelte-spa-router';
 	import { ChampionTab, TotalTab } from '.';
 
-	let activeTab = 'total';
+	let activeTab = ($location as string).includes('champions') ? 'champion' : 'total';
 
 	interface Tab {
 		label: string;
