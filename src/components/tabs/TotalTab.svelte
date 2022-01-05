@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LastSevenDays, SubTierBox, TierBox } from '../left-side';
+	import { LastSevenDays, OverviewStatsBox, SubTierBox, TierBox } from '../left-side';
 	import { GameList } from '../right-side';
 </script>
 
@@ -7,6 +7,7 @@
 	<div class="SideContent">
 		<TierBox />
 		<SubTierBox />
+		<OverviewStatsBox />
 		<LastSevenDays />
 	</div>
 	<div class="RealContent">

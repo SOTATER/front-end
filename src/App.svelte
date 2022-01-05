@@ -61,6 +61,7 @@
 		routes={{
 			'/': Search,
 			'/summoner/:id': Main,
+			'/summoner/champions/:id': Main,
 		}}
 	/>
 {/await}
