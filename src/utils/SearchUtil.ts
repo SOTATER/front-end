@@ -1,4 +1,4 @@
-const Chosung = [
+const CHOSUNG = [
 	'ㄱ',
 	'ㄲ',
 	'ㄴ',
@@ -20,7 +20,7 @@ const Chosung = [
 	'ㅎ',
 ];
 
-const doubleChosungArray = {
+const DOUBLE_CHOSUNG = {
 	ㄳ: 'ㄱㅅ',
 	ㄵ: 'ㄴㅈ',
 	ㄶ: 'ㄴㅎ',
@@ -42,15 +42,15 @@ export const getChosung = (str: string): string => {
 		const jongsung = word % 28;
 		const jungsung = ((word - jongsung) / 28) % 21;
 		const chosung = ((word - jongsung) / 28 - jungsung) / 21;
-		chosungs = chosungs.concat(Chosung[chosung]);
+		chosungs = chosungs.concat(CHOSUNG[chosung]);
 	}
 	return chosungs;
 };
 
 export const disassembleChosung = (str: string): string => {
 	let chosung = str;
-	for (const doubleChosung in doubleChosungArray) {
-		chosung = chosung.replace(doubleChosung, doubleChosungArray[doubleChosung]);
+	for (const doubleChosung in DOUBLE_CHOSUNG) {
+		chosung = chosung.replace(doubleChosung, DOUBLE_CHOSUNG[doubleChosung]);
 	}
 	return chosung;
 };
