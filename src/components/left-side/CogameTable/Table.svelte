@@ -47,6 +47,10 @@
 			sort(clicked, true);
 		}
 	};
+
+	function sortAtoB<T>(a: T, b: T): number {
+		return a < b ? 1 : -1;
+	}
 	const sort = (
 		sortingType: 'name' | 'games' | 'wins' | 'loses' | 'winningRate',
 		ascending: boolean,
@@ -54,44 +58,44 @@
 		switch (sortingType) {
 			case 'name': {
 				if (ascending) {
-					sortedData = sortedData.sort((a, b) => (a.name > b.name ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(b.name, a.name));
 				} else {
-					sortedData = sortedData.sort((a, b) => (a.name < b.name ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(a.name, b.name));
 				}
 				break;
 			}
 			case 'wins': {
 				if (ascending) {
-					sortedData = sortedData.sort((a, b) => (a.win > b.win ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(b.win, a.win));
 				} else {
-					sortedData = sortedData.sort((a, b) => (a.win < b.win ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(a.win, b.win));
 				}
 				break;
 			}
 			case 'loses': {
 				if (ascending) {
-					sortedData = sortedData.sort((a, b) => (a.lose > b.lose ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(b.lose, a.lose));
 				} else {
-					sortedData = sortedData.sort((a, b) => (a.lose < b.lose ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(a.lose, b.lose));
 				}
 				break;
 			}
 			case 'games': {
 				if (ascending) {
-					sortedData = sortedData.sort((a, b) => (a.games > b.games ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(b.games, a.games));
 				} else {
-					sortedData = sortedData.sort((a, b) => (a.games < b.games ? 1 : -1));
+					sortedData = sortedData.sort((a, b) => sortAtoB(a.games, b.games));
 				}
 				break;
 			}
 			case 'winningRate': {
 				if (ascending) {
 					sortedData = sortedData.sort((a, b) =>
-						a.win / a.games > b.win / b.games ? 1 : -1,
+						sortAtoB(b.win / b.games, a.win / a.games),
 					);
 				} else {
 					sortedData = sortedData.sort((a, b) =>
-						a.win / a.games < b.win / b.games ? 1 : -1,
+						sortAtoB(a.win / a.games, b.win / b.games),
 					);
 				}
 				break;
