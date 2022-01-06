@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CogameSummoner } from './CogameSummoner';
+	import type { AscendingMode, CogameSummoner } from './types';
 
 	const summonerData: CogameSummoner[] = [
 		{
@@ -33,8 +33,8 @@
 			lose: 1,
 		},
 	];
-	let ascending: 'name' | 'games' | 'wins' | 'loses' | 'winningRate' | 'none' = 'none';
-	let descending: 'name' | 'games' | 'wins' | 'loses' | 'winningRate' | 'none' = 'none';
+	let ascending: AscendingMode = 'none';
+	let descending: AscendingMode = 'none';
 	let sortedData = [...summonerData];
 	const handleHeaderClick = (clicked: 'name' | 'games' | 'wins' | 'loses' | 'winningRate') => {
 		if (ascending === clicked) {

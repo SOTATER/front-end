@@ -4,3 +4,5 @@ export interface CogameSummoner {
 	win: number;
 	lose: number;
 }
+
+export type AscendingMode = 'name' | 'games' | 'wins' | 'loses' | 'winningRate' | 'none';
