@@ -1,5 +1,7 @@
 <script lang="ts">
-	const summonerData = [
+	import type { CogameSummoner } from './CogameSummoner';
+
+	const summonerData: CogameSummoner[] = [
 		{
 			name: 'LSB Kael',
 			games: 2,
