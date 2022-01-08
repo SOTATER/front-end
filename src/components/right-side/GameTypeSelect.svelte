@@ -1,5 +1,8 @@
 <script lang="ts">
-	const gameTypes = [
+	import { selectedTab, selectOtherPanel } from '../../stores/GameListStore';
+	import type { GameOtherTypeSelect } from './types';
+
+	const gameTypes: GameOtherTypeSelect[] = [
 		{ id: 1, name: '큐 타입', value: '' },
 		{ id: 2, name: '일반 (비공개 선택)', value: 'normal' },
 		{ id: 3, name: '무작위 총력전', value: 'aram' },
@@ -10,12 +13,15 @@
 
 	let selected = gameTypes[0];
 
+	$: active =
+		$selectedTab !== 'total' && $selectedTab !== 'soloranked' && $selectedTab !== 'flexranked';
+
 	const handleChange = () => {
-		// TODO: 매치 데이터 가져오기
+		selectOtherPanel(selected.value);
 	};
 </script>
 
-<span class="jcf-select jcf-unselectable jcf-select-SelectMatchTypes">
+<span class="Item jcf-select jcf-unselectable jcf-select-SelectMatchTypes" class:active>
 	<select
 		class="SelectMatchTypes jcf-reset-appearance"
 		style="position: absolute; height: 100%; width: 100%;"
@@ -30,6 +36,15 @@
 </span>
 
 <style>
+	.Item {
+		display: inline-block;
+		height: 32px;
+		margin: 0 10px;
+		vertical-align: top;
+	}
+	.Item.active {
+		border-bottom: 2px solid #1f8ecd;
+	}
 	.jcf-select {
 		position: relative;
 	}
@@ -37,9 +52,7 @@
 		user-select: none;
 	}
 	.jcf-select-SelectMatchTypes {
-		display: inline-block;
 		border: none;
-		height: 30px;
 		line-height: 36px;
 		cursor: pointer;
 	}

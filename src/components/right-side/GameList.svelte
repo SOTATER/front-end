@@ -1,57 +1,30 @@
 <script lang="ts">
 	import GameListTab from './GameListTab.svelte';
 	import GameListTabPanel from './GameListTabPanel.svelte';
+	import GameListTabPanelItem from './GameListTabPanelItem.svelte';
 	import GameTypeSelect from './GameTypeSelect.svelte';
 	import SearchTextfield from './search/SearchTextfield.svelte';
+	import { GAME_TYPES } from './types';
 </script>
 
 <div class="GameListContainer">
 	<div class="Box">
 		<div class="Navigation">
 			<ul class="List">
-				<GameListTab>전체</GameListTab>
-				<GameListTab>솔로랭크</GameListTab>
-				<GameListTab>자유랭크</GameListTab>
-				<GameListTab>
-					<GameTypeSelect />
-				</GameListTab>
+				<GameListTab tab="total">전체</GameListTab>
+				<GameListTab tab="soloranked">솔로랭크</GameListTab>
+				<GameListTab tab="flexranked">자유랭크</GameListTab>
+				<GameTypeSelect />
 			</ul>
 			<SearchTextfield />
 		</div>
 	</div>
-	<div class="Content">
-		<GameListTabPanel>
-			<!-- 데이터가 없을 경우 -->
-			<div class="Box">
-				<div class="Content">
-					<div class="ErrorMessage"><div>기록된 전적이 없습니다.</div></div>
-				</div>
-			</div>
-		</GameListTabPanel>
-		<GameListTabPanel>
-			<!-- 데이터가 없을 경우 -->
-			<div class="Box">
-				<div class="Content">
-					<div class="ErrorMessage"><div>기록된 전적이 없습니다.</div></div>
-				</div>
-			</div>
-		</GameListTabPanel>
-		<GameListTabPanel>
-			<!-- 데이터가 없을 경우 -->
-			<div class="Box">
-				<div class="Content">
-					<div class="ErrorMessage"><div>기록된 전적이 없습니다.</div></div>
-				</div>
-			</div>
-		</GameListTabPanel>
-		<GameListTabPanel>
-			<!-- 데이터가 없을 경우 -->
-			<div class="Box">
-				<div class="Content">
-					<div class="ErrorMessage"><div>기록된 전적이 없습니다.</div></div>
-				</div>
-			</div>
-		</GameListTabPanel>
+	<div>
+		{#each GAME_TYPES as type}
+			<GameListTabPanel panel={type}>
+				<GameListTabPanelItem />
+			</GameListTabPanel>
+		{/each}
 	</div>
 </div>
 
@@ -80,16 +53,5 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-	}
-	.Content {
-		position: relative;
-	}
-	.ErrorMessage {
-		display: block;
-		padding: 126px 0 60px;
-		text-align: center;
-		background: url(/assets/images/bg-noData.png) 50% 50px no-repeat;
-		font-size: 16px;
-		color: #555e5e;
 	}
 </style>

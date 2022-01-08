@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { registerTab, selectedTab, selectTab } from '../../stores/GameListStore';
+	import { selectedTab, selectTab } from '../../stores/GameListStore';
+	import type { GameType } from './types';
 
-	const tab = {};
-	registerTab(tab);
+	export let tab: GameType = 'total';
 
 	const handleTabClick = () => {
 		selectTab(tab);
-		// TODO: 탭 별 매치 데이터 가져오기
 	};
 </script>
 

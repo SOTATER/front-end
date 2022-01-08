@@ -6,40 +6,14 @@
 	import GameAverageStatsPosition from './GameAverageStatsPosition.svelte';
 	import GameAverageStatsChampion from './GameAverageStatsChampion.svelte';
 
-	// TODO: API 연동
-	export let win = 9;
-	export let lose = 11;
-	export let kill = 9.9;
-	export let death = 8.0;
-	export let assist = 17.6;
-	export let ckRate = 64; // 킬관여율
-	export let mostChampions: MostChampions[] = [
-		{
-			name: 'Kassadin',
-			win: 1,
-			lose: 1,
-			kda: 5.53,
-		},
-		{
-			name: 'Jayce',
-			win: 1,
-			lose: 1,
-			kda: 3.75,
-		},
-		{
-			name: 'Pyke',
-			win: 1,
-			lose: 1,
-			kda: 3,
-		},
-	];
-	export let positionStats: PositionStats[] = [
-		{
-			name: '미드',
-			roleRate: 100,
-			winRatio: 100,
-		},
-	];
+	export let win = 0;
+	export let lose = 0;
+	export let kill = 0;
+	export let death = 0;
+	export let assist = 0;
+	export let ckRate = 0; // 킬관여율
+	export let mostChampions: MostChampions[] = [];
+	export let positionStats: PositionStats[] = [];
 
 	const blueRate = (win / (win + lose)) * 100;
 	const redRate = 100 - blueRate;
