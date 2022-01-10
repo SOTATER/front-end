@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ApiConstants } from '../../../apis/ApiConstants';
+	import { getKdaColor } from '../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../tooltip/Tooltip';
 	import type { OverviewStats } from './OverviewStats';
@@ -22,19 +23,6 @@
 	const getRoundNum = (num: number) => {
 		return (Math.round(num * 10) / 10).toFixed(1);
 	};
-
-	const getKdaColor = (kda: string) => {
-		const num = parseFloat(kda);
-		let className = 'normal';
-		if (num > 5) {
-			className = 'orange';
-		} else if (num > 4) {
-			className = 'blue';
-		} else if (num > 3) {
-			className = 'green';
-		}
-		return `KDA ${className}`;
-	};
 </script>
 
 <div class="ChampionBox">
@@ -50,7 +38,7 @@
 		</div>
 	</div>
 	<div class="PersonalKDA">
-		<div class={getKdaColor(kda)} use:popoverText={{ text: kdaTooltip }}>
+		<div class={`KDA ${getKdaColor(parseFloat(kda))}`} use:popoverText={{ text: kdaTooltip }}>
 			<span>{`${kda}:1`}</span>
 			<span>평점</span>
 		</div>

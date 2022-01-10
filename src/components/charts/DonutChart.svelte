@@ -1,8 +1,8 @@
 <script lang="ts">
+	export let mode: 'winningRate' | 'normal' = 'winningRate';
 	export let radius = 90;
 	export let blue = 35;
-	export let red = 65;
-	export let mode: 'winningRate' | 'normal' = 'winningRate';
+	const red = 100 - blue;
 	const width = mode === 'winningRate' ? 6 : 2.5;
 	const blueRate = (blue / (blue + red)) * 100;
 	const strokeDashArrayRed = `${100 - blueRate} ${blueRate}`;
