@@ -6,6 +6,7 @@
 
 	let activeTab: TabType = 'overview';
 
+	//TODO: 각 탭 별 API 호출
 	const handleClick = (tab: TabType) => () => (activeTab = tab);
 </script>
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { GameDetailBuild } from '../GameDetailBuild';
-	import { GameDetailEtc } from '../GameDetailEtc';
-	import { GameDetailTeam } from '../GameDetailTeam';
-	import { GameDetailTotal } from '../GameDetailTotal';
+	import { GameDetailBuild } from './build';
+	import { GameDetailEtc } from './etc';
+	import { GameDetailTeam } from './team';
+	import { GameDetailTotal } from './total';
 	import GameDetailTabs from './GameDetailTabs.svelte';
 	import type { Tab, WinLoseType } from './types';
 
