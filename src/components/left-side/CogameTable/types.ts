@@ -5,4 +5,6 @@ export interface CogameSummoner {
 	lose: number;
 }
 
-export type AscendingMode = 'name' | 'games' | 'wins' | 'loses' | 'winningRate' | 'none';
+export type SortingClick = 'name' | 'games' | 'wins' | 'loses' | 'winningRate';
+
+export type AscendingMode = SortingClick | 'none';

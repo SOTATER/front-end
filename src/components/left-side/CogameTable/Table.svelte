@@ -1,5 +1,7 @@
 <script lang="ts">
-	import type { AscendingMode, CogameSummoner } from './types';
+	import axios from 'axios';
+
+	import type { AscendingMode, SortingClick, CogameSummoner } from './types';
 
 	const summonerData: CogameSummoner[] = [
 		{
@@ -36,7 +38,7 @@
 	let ascending: AscendingMode = 'none';
 	let descending: AscendingMode = 'none';
 	let sortedData = [...summonerData];
-	const handleHeaderClick = (clicked: 'name' | 'games' | 'wins' | 'loses' | 'winningRate') => {
+	const handleHeaderClick = (clicked: SortingClick) => {
 		if (ascending === clicked) {
 			ascending = 'none';
 			descending = clicked;
@@ -48,56 +50,30 @@
 		}
 	};
 
-	function sortAtoB<T>(a: T, b: T): number {
-		return a < b ? 1 : -1;
+	function sortAtoB<T>(a: T, b: T, isAscending: boolean): number {
+		return isAscending ? (a < b ? 1 : -1) : a > b ? 1 : -1;
 	}
-	const sort = (
-		sortingType: 'name' | 'games' | 'wins' | 'loses' | 'winningRate',
-		ascending: boolean,
-	) => {
+
+	function sortByType(
+		sortData: CogameSummoner[],
+		sortingType: SortingClick,
+		isAscending: boolean,
+	) {
+		return sortData.sort((a, b) => sortAtoB(a[sortingType], b[sortingType], isAscending));
+	}
+	const sort = (sortingType: SortingClick, ascending: boolean) => {
 		switch (sortingType) {
-			case 'name': {
-				if (ascending) {
-					sortedData = sortedData.sort((a, b) => sortAtoB(b.name, a.name));
-				} else {
-					sortedData = sortedData.sort((a, b) => sortAtoB(a.name, b.name));
-				}
-				break;
-			}
-			case 'wins': {
-				if (ascending) {
-					sortedData = sortedData.sort((a, b) => sortAtoB(b.win, a.win));
-				} else {
-					sortedData = sortedData.sort((a, b) => sortAtoB(a.win, b.win));
-				}
-				break;
-			}
-			case 'loses': {
-				if (ascending) {
-					sortedData = sortedData.sort((a, b) => sortAtoB(b.lose, a.lose));
-				} else {
-					sortedData = sortedData.sort((a, b) => sortAtoB(a.lose, b.lose));
-				}
-				break;
-			}
+			case 'name':
+			case 'wins':
+			case 'loses':
 			case 'games': {
-				if (ascending) {
-					sortedData = sortedData.sort((a, b) => sortAtoB(b.games, a.games));
-				} else {
-					sortedData = sortedData.sort((a, b) => sortAtoB(a.games, b.games));
-				}
+				sortedData = sortByType(sortedData, sortingType, ascending);
 				break;
 			}
 			case 'winningRate': {
-				if (ascending) {
-					sortedData = sortedData.sort((a, b) =>
-						sortAtoB(b.win / b.games, a.win / a.games),
-					);
-				} else {
-					sortedData = sortedData.sort((a, b) =>
-						sortAtoB(a.win / a.games, b.win / b.games),
-					);
-				}
+				sortedData = sortedData.sort((a, b) =>
+					sortAtoB(a.win / a.games, b.win / b.games, ascending),
+				);
 				break;
 			}
 		}
