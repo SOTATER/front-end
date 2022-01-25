@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { selectedTab, selectOtherPanel } from '../../stores/GameListStore';
+	import { selectedTab, selectTab } from '../../stores/GameListStore';
 	import type { GameOtherTypeSelect } from './types';
 
 	const gameTypes: GameOtherTypeSelect[] = [
@@ -15,10 +15,6 @@
 
 	$: active =
 		$selectedTab !== 'total' && $selectedTab !== 'soloranked' && $selectedTab !== 'flexranked';
-
-	const handleChange = () => {
-		selectOtherPanel(selected.value);
-	};
 </script>
 
 <span class="Item jcf-select jcf-unselectable jcf-select-SelectMatchTypes" class:active>
@@ -26,7 +22,7 @@
 		class="SelectMatchTypes jcf-reset-appearance"
 		style="position: absolute; height: 100%; width: 100%;"
 		bind:value={selected}
-		on:change={handleChange}
+		on:change={() => selectTab(selected.value)}
 	>
 		{#each gameTypes as gameType}
 			<option value={gameType}>{gameType.name}</option>

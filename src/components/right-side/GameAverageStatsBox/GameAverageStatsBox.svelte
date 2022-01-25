@@ -1,54 +1,61 @@
 <script lang="ts">
 	import DonutChart from '../../charts/DonutChart.svelte';
-	import type { MostChampions, PositionStats } from './GameAverageStats';
+	import type { GameAverageStats } from './GameAverageStats';
 	import GameAverageStatsKda from './GameAverageStatsKda.svelte';
 	import GameAverageStatsPositionNotFound from './GameAverageStatsPositionNotFound.svelte';
 	import GameAverageStatsPosition from './GameAverageStatsPosition.svelte';
 	import GameAverageStatsChampion from './GameAverageStatsChampion.svelte';
 
-	export let win = 0;
-	export let lose = 0;
-	export let kill = 0;
-	export let death = 0;
-	export let assist = 0;
-	export let ckRate = 0; // 킬관여율
-	export let mostChampions: MostChampions[] = [];
-	export let positionStats: PositionStats[] = [];
-
-	const blueRate = (win / (win + lose)) * 100;
-	const redRate = 100 - blueRate;
+	export let stats: GameAverageStats = {
+		win: 0,
+		lose: 0,
+		kda: {
+			kill: 0,
+			death: 0,
+			assist: 0,
+			ckRate: 0,
+		},
+		mostChampions: [],
+		positionStats: [],
+	};
 </script>
 
 <div class="GameAverageStatsBox">
 	<div class="Box">
-		<table class="GameAverageStats">
-			<tbody>
-				<tr>
-					<td class="Title" colspan="2"> {`${win + lose}전 ${win}승 ${lose}패`} </td>
-					<td class="MostChampion" rowspan="2">
-						<GameAverageStatsChampion {mostChampions} />
-					</td>
-					<td class="Title">선호 포지션 (랭크)</td>
-				</tr>
-				<tr>
-					<td class="Summary">
-						<div class="WinRatioGraph">
-							<DonutChart blue={blueRate} red={redRate} />
-						</div>
-					</td>
-					<td class="KDA">
-						<GameAverageStatsKda {kill} {death} {assist} {ckRate} />
-					</td>
-					<td class="PositionStats">
-						{#if positionStats.length !== 0}
-							<GameAverageStatsPosition {positionStats} />
-						{:else}
-							<GameAverageStatsPositionNotFound />
-						{/if}
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		{#if stats.mostChampions.length !== 0}
+			<table class="GameAverageStats">
+				<tbody>
+					<tr>
+						<td class="Title" colspan="2">
+							{`${stats.win + stats.lose}전 ${stats.win}승 ${stats.lose}패`}
+						</td>
+						<td class="MostChampion" rowspan="2">
+							<GameAverageStatsChampion mostChampions={stats.mostChampions} />
+						</td>
+						<td class="Title">선호 포지션 (랭크)</td>
+					</tr>
+					<tr>
+						<td class="Summary">
+							<div class="WinRatioGraph">
+								<DonutChart blue={(stats.win / (stats.win + stats.lose)) * 100} />
+							</div>
+						</td>
+						<td class="KDA">
+							<GameAverageStatsKda kda={stats.kda} />
+						</td>
+						<td class="PositionStats">
+							{#if stats.positionStats.length !== 0}
+								<GameAverageStatsPosition positionStats={stats.positionStats} />
+							{:else}
+								<GameAverageStatsPositionNotFound />
+							{/if}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		{:else}
+			<div class="ErrorMessage"><div>기록된 전적이 없습니다.</div></div>
+		{/if}
 	</div>
 </div>
 
@@ -115,5 +122,13 @@
 		border-left: 1px solid #cdd2d2;
 		white-space: nowrap;
 		vertical-align: middle;
+	}
+	.ErrorMessage {
+		display: block;
+		padding: 126px 0 60px;
+		text-align: center;
+		background: url(/assets/images/bg-noData.png) 50% 50px no-repeat;
+		font-size: 16px;
+		color: #555e5e;
 	}
 </style>

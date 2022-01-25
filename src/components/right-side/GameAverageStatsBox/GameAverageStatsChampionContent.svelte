@@ -10,6 +10,10 @@
 		lose: 0,
 		kda: 0,
 	};
+
+	const getWonLoseRatio = (win: number, lose: number) => {
+		return parseFloat(((win / (win + lose)) * 100).toFixed());
+	};
 </script>
 
 <div class="Content">
@@ -18,7 +22,9 @@
 	</div>
 	<div class="Name">{ApiConstants.champions[champion.name].name}</div>
 	<div class="WonLose">
-		<b>50%</b>
+		<b class:red={getWonLoseRatio(champion.win, champion.lose) > 50}>
+			{`${getWonLoseRatio(champion.win, champion.lose)}%`}
+		</b>
 		<span>{`(${champion.win}승 ${champion.lose}패)`}</span>
 	</div>
 	<div class={`KDA ${getKdaColor(champion.kda)}`}>
@@ -50,6 +56,9 @@
 		font-size: 11px;
 		line-height: 12px;
 		color: #333;
+	}
+	.WonLose b.red {
+		color: #c6443e;
 	}
 	.KDA {
 		display: inline-block;

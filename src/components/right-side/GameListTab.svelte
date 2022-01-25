@@ -3,14 +3,10 @@
 	import type { GameType } from './types';
 
 	export let tab: GameType = 'total';
-
-	const handleTabClick = () => {
-		selectTab(tab);
-	};
 </script>
 
 <li class="Item" class:active={$selectedTab === tab}>
-	<a href="/" class="Link" on:click|preventDefault={handleTabClick}>
+	<a href="/" class="Link" on:click|preventDefault={() => selectTab(tab)}>
 		<slot />
 	</a>
 </li>

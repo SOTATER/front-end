@@ -46,7 +46,7 @@
 		display: inline-block;
 		vertical-align: middle;
 		text-indent: -99999px;
-		background-image: url(/assets/images/site.png?image=q_auto&v=1637122822);
+		background-image: url(/assets/images/site.png);
 	}
 	.__spSite-139 {
 		background-position: -112px -2536px;
