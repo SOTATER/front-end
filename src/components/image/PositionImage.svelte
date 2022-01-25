@@ -1,7 +1,11 @@
-<script lang="ts">
-	export let position = '미드';
+<script context="module" lang="ts">
+	export type Position = '탑' | '정글' | '미드' | '원딜' | '서포터';
+</script>
 
-	const getClassName = (position: string) => {
+<script lang="ts">
+	export let position: Position = '미드';
+
+	const getClassName = (position: Position) => {
 		let className = '__spSite ';
 		switch (position) {
 			case '원딜':

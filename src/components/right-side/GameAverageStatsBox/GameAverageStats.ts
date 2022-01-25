@@ -1,3 +1,5 @@
+import type { Position } from '../../image/PositionImage.svelte';
+
 export interface MostChampions {
 	name: string;
 	win: number;
@@ -6,7 +8,7 @@ export interface MostChampions {
 }
 
 export interface PositionStats {
-	name: string;
+	name: Position;
 	roleRate: number;
 	winRatio: number;
 }
