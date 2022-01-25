@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
+import type { GameAverageStats } from './GameAverageStatsBox/GameAverageStats';
 import type { GameType } from './types';
 
 // 임시 사용. API 연동 후 제거 예정
-export const getGameAverageStatsDummyData = (type: GameType) => {
+export const getGameAverageStatsDummyData = (type: GameType): GameAverageStats => {
 	switch (type) {
 		case 'total':
 		case '':
