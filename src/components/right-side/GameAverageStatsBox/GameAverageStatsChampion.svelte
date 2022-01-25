@@ -7,27 +7,15 @@
 </script>
 
 <ul>
-	<li>
-		{#if !!mostChampions[0]}
-			<GameAverageStatsChampionContent champion={mostChampions[0]} />
-		{:else}
-			<GameAverageStatsChampionNotFound />
-		{/if}
-	</li>
-	<li>
-		{#if !!mostChampions[1]}
-			<GameAverageStatsChampionContent champion={mostChampions[1]} />
-		{:else}
-			<GameAverageStatsChampionNotFound />
-		{/if}
-	</li>
-	<li>
-		{#if !!mostChampions[2]}
-			<GameAverageStatsChampionContent champion={mostChampions[2]} />
-		{:else}
-			<GameAverageStatsChampionNotFound />
-		{/if}
-	</li>
+	{#each Array(3) as _, i}
+		<li>
+			{#if !!mostChampions[i]}
+				<GameAverageStatsChampionContent champion={mostChampions[i]} />
+			{:else}
+				<GameAverageStatsChampionNotFound />
+			{/if}
+		</li>
+	{/each}
 </ul>
 
 <style>
