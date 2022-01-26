@@ -1,17 +1,12 @@
 <script lang="ts">
-	import { registerTab, selectedTab, selectTab } from '../../stores/GameListStore';
+	import { selectedTab, selectTab } from '../../stores/GameListStore';
+	import type { GameType } from './types';
 
-	const tab = {};
-	registerTab(tab);
-
-	const handleTabClick = () => {
-		selectTab(tab);
-		// TODO: 탭 별 매치 데이터 가져오기
-	};
+	export let tab: GameType = 'total';
 </script>
 
 <li class="Item" class:active={$selectedTab === tab}>
-	<a href="/" class="Link" on:click|preventDefault={handleTabClick}>
+	<a href="/" class="Link" on:click|preventDefault={() => selectTab(tab)}>
 		<slot />
 	</a>
 </li>

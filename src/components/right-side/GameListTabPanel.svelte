@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { registerPanel, selectedPanel } from '../../stores/GameListStore';
+	import { selectedPanel } from '../../stores/GameListStore';
+	import type { GameType } from './types';
 
-	const panel = {};
-	registerPanel(panel);
+	export let panel: GameType = 'total';
 </script>
 
 {#if $selectedPanel === panel}
