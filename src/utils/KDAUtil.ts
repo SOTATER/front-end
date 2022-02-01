@@ -1,3 +1,7 @@
+export const getKdaRatio = (kill: number, death: number, assist: number): string => {
+	return ((kill + assist) / death).toFixed(2);
+};
+
 export const getKdaColor = (num: number): string => {
 	let className = 'normal';
 	if (num >= 5) {
@@ -8,4 +12,8 @@ export const getKdaColor = (num: number): string => {
 		className = 'green';
 	}
 	return className;
+};
+
+export const getKdaColorByStats = (kill: number, death: number, assist: number): string => {
+	return getKdaColor(parseFloat(getKdaRatio(kill, death, assist)));
 };

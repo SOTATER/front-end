@@ -10,5 +10,6 @@
 	.text-popup {
 		max-width: 300px;
 		font-size: 12px;
+		white-space: pre-wrap;
 	}
 </style>
