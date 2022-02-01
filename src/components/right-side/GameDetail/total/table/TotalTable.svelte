@@ -1,8 +1,11 @@
 <script lang="ts">
+	import type { Participant } from '../../../../../schema/api/participants';
 	import type { TeamColor, WinLoseType } from '../../types';
 
-	export let winLose: WinLoseType = 'Win';
-	export let teamColor: TeamColor = 'blue';
+	export let participants: Participant[] = [];
+	let participantId = 1; // temp
+	let winLose: WinLoseType = participants[participantId].win ? 'Win' : 'Lose'; // TODO: 무효시에는??
+	let teamColor: TeamColor = participants[participantId].teamId === 100 ? 'blue' : 'red';
 </script>
 
 <table class={`GameDetailTable ${winLose}`}>
@@ -12,6 +15,7 @@
 		<col width="18px" />
 		<col />
 		<col width="65px" />
+		<col width="55px" />
 		<col width="76px" />
 		<col width="66px" />
 		<col width="48px" />
@@ -27,6 +31,7 @@
 				{`(${teamColor === 'blue' ? '블루' : '레드'}팀)`}
 			</th>
 			<th class="HeaderCell">티어</th>
+			<th class="HeaderCell">OP Score</th>
 			<th class="HeaderCell">KDA</th>
 			<th class="HeaderCell">피해량</th>
 			<th class="HeaderCell">와드</th>
@@ -34,7 +39,28 @@
 			<th class="HeaderCell">아이템</th>
 		</tr>
 	</thead>
-	<tbody class="Content" />
+	<tbody class="Content">
+		{#each participants as part, i}
+			<tr
+				class="Row"
+				class:first={i === 0}
+				class:last={i === participants.length - 1}
+				class:isRequester={i === participantId}
+			>
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+				<td class="Cell" />
+			</tr>
+		{/each}
+	</tbody>
 </table>
 
 <style>
@@ -73,6 +99,16 @@
 	.GameDetailTable.Win > .Content {
 		background-color: #d8e4ec;
 		border: solid 1px #bacedc;
+	}
+	.GameDetailTable > .Content > .Row > .Cell {
+		padding: 3px 0;
+		vertical-align: middle;
+	}
+	.GameDetailTable > .Content > .Row.first > .Cell {
+		padding-top: 4px;
+	}
+	.GameDetailTable > .Content > .Row.last > .Cell {
+		padding-bottom: 4px;
 	}
 	.GameDetailTable.Win > .Content > .Row.isRequester {
 		background-color: #c6dbe9;
