@@ -1,7 +1,10 @@
 <script lang="ts">
 	/* eslint-disable @typescript-eslint/restrict-template-expressions */
+	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+	import { ApiConstants } from '../../../../../apis/ApiConstants';
 	import type { Participant } from '../../../../../schema/api/participants';
 	import { getKdaColorByStats, getKdaRatio } from '../../../../../utils/KDAUtil';
+	import ChampionImageCircle from '../../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../../tooltip/Tooltip';
 	import type { TeamColor, WinLoseType } from '../../types';
 
@@ -48,8 +51,18 @@
 				class:last={i === participants.length - 1}
 				class:isRequester={i === participantId}
 			>
-				<!-- TODO: 챔피언 이미지 표시 -->
-				<td class="ChampionImage Cell" />
+				<td class="ChampionImage Cell">
+					<div
+						class="Image"
+						use:popoverText={{ text: ApiConstants.champions[part.championName].name }}
+					>
+						<ChampionImageCircle
+							championName={part.championName}
+							size={32}
+							level={part.champLevel}
+						/>
+					</div>
+				</td>
 				<!-- TODO: 소환자 스펠 표시 -->
 				<td class="SummonerSpell Cell" />
 				<!-- TODO: 룬 표시 -->

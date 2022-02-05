@@ -65,6 +65,8 @@ export interface Participant {
 	riotIdTagline?: string;
 	role?: string;
 	sightWardsBoughtInGame?: number;
+	spell1Id?: string; // 임의 추가
+	spell2Id?: string; // 임의 추가
 	spell1Casts?: number;
 	spell2Casts?: number;
 	spell3Casts?: number;
