@@ -2,7 +2,6 @@
 	import { ApiConstants } from '../../apis/ApiConstants';
 	export let spellName: string;
 	const spell = ApiConstants.spells[spellName];
-	console.log(spell);
 </script>
 
 <div class="spell-popup">
