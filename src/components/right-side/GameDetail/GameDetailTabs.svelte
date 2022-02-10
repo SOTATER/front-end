@@ -1,13 +1,13 @@
 <script lang="ts">
+	import type { Match } from '../../../schema/api/matches';
 	import type { Tab, TabType } from './types';
-	import type { Participant } from '../../../schema/api/participants';
 
 	export let tabs: Tab[] = [];
 	export let summonerId = '';
-	export let participants: Participant[] = [];
+	export let matches: Match = {};
 
 	let activeTab: TabType = 'overview';
-	let participant = participants.find((part) => part.summonerId === summonerId);
+	let participant = matches.info.participants.find((part) => part.summonerId === summonerId);
 
 	const handleClick = (tab: TabType) => () => (activeTab = tab);
 </script>
@@ -31,7 +31,7 @@
 		{#each tabs as { value, component }}
 			{#if activeTab == value}
 				<div class="MatchDetailContent">
-					<svelte:component this={component} {summonerId} {participants} />
+					<svelte:component this={component} {summonerId} {matches} />
 				</div>
 			{/if}
 		{/each}

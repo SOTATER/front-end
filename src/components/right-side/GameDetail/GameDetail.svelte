@@ -1,12 +1,12 @@
 <script lang="ts">
+	import type { Match } from '../../../schema/api/matches';
+	import type { Tab } from './types';
+	import GameDetailTabs from './GameDetailTabs.svelte';
 	import { GameDetailBuild } from './build';
 	import { GameDetailEtc } from './etc';
 	import { GameDetailTeam } from './team';
 	import { GameDetailTotal } from './total';
-	import GameDetailTabs from './GameDetailTabs.svelte';
-	import type { Tab } from './types';
-	import type { Participant } from '../../../schema/api/participants';
-	import { getParticipants } from './total/dummy';
+	import { getMatches } from './dummy';
 
 	let tabs: Tab[] = [
 		{ label: '종합', value: 'overview', component: GameDetailTotal },
@@ -18,7 +18,7 @@
 	// TODO: 소환사 아이디 가져오기
 	let summonerId = 'summonerId';
 	// TODO: 매치 데이터 가져오기
-	let participants: Participant[] = getParticipants();
+	let matches: Match = getMatches();
 </script>
 
-<GameDetailTabs {tabs} {summonerId} {participants} />
+<GameDetailTabs {tabs} {summonerId} {matches} />

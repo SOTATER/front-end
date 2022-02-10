@@ -21,6 +21,22 @@
 			gold: 0,
 		},
 	};
+	// export let scores: TeamSummary = {
+	// 	Win: {
+	// 		baron: 0,
+	// 		dragon: 0,
+	// 		tower: 4,
+	// 		kill: 45,
+	// 		gold: 63810,
+	// 	},
+	// 	Lose: {
+	// 		baron: 0,
+	// 		dragon: 0,
+	// 		tower: 1,
+	// 		kill: 36,
+	// 		gold: 59391,
+	// 	},
+	// };
 
 	const loseWin = winLose === 'Win' ? 'Lose' : 'Win';
 </script>
