@@ -8,6 +8,8 @@
 	import ChampionImageCircle from '../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../tooltip/Tooltip';
 	import SpellImage from '../../../image/SpellImage.svelte';
+	import RuneImage from '../../../image/RuneImage.svelte';
+	import ItemImage from '../../../image/ItemImage.svelte';
 
 	export let summonerId = '';
 	export let gameDuration = 0;
@@ -66,14 +68,18 @@
 						/>
 					</div>
 				</td>
-				<!-- TODO: 소환자 스펠 표시 ({spell1Id, spell2Id}로 스펠이름 가져오기)-->
+				<!-- TODO: 소환자 스펠 표시 ({spell1Id, spell2Id}로 스펠이름 가져오기) -->
 				<td class="SummonerSpell Cell">
 					<SpellImage spellName="SummonerSmite" size={16} />
 					<div class="SummonerSpellSpace" />
 					<SpellImage spellName="SummonerFlash" size={16} />
 				</td>
-				<!-- TODO: 룬 표시 -->
-				<td class="Rune Cell" />
+				<!-- TODO: 룬 아이디 가져오기 -->
+				<td class="Rune Cell">
+					<RuneImage runeId={8112} size={16} />
+					<div class="RuneSpace" />
+					<RuneImage runeId={8300} size={16} />
+				</td>
 				<td class="SummonerName Cell">
 					<a
 						href={`/#/summoner/${encodeURIComponent(part.summonerName)}`}
@@ -117,7 +123,7 @@
 				>
 					<div class="ChampionDamage">{part.totalDamageDealtToChampions}</div>
 					<div class="Progress">
-						<!-- TODO: 피해량 계산: 개인당 챔피언에게 가한 피해량 / 모든 팀에서 가장 많은 챔피언에게 가한 피해량  -->
+						<!-- 피해량 계산: 개인당 챔피언에게 가한 피해량 / 모든 팀에서 가장 많은 챔피언에게 가한 피해량  -->
 						<div
 							class="Fill"
 							style={`width: ${(
@@ -155,8 +161,17 @@
 						)}`}
 					</div>
 				</td>
-				<!-- TODO: 아이템 표시 -->
-				<td class="Items Cell" />
+				<td class="Items Cell">
+					{#each [part.item0, part.item1, part.item2, part.item3, part.item4, part.item5, part.item6] as itemId}
+						<div class="Item">
+							{#if itemId === 0}
+								<div class="NoItem" />
+							{:else}
+								<ItemImage {itemId} />
+							{/if}
+						</div>
+					{/each}
+				</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -220,6 +235,9 @@
 		padding-right: 4px;
 	}
 	.GameDetailTable > .Content > .Row > .Cell.SummonerSpell > .SummonerSpellSpace {
+		margin-bottom: 2px;
+	}
+	.GameDetailTable > .Content > .Row > .Cell.Rune > .RuneSpace {
 		margin-bottom: 2px;
 	}
 	.GameDetailTable > .Content > .Row > .Cell.SummonerName {
@@ -296,5 +314,16 @@
 	.GameDetailTable > .Content > .Row > .Cell.Items {
 		text-align: center;
 		font-size: 0;
+	}
+	.GameDetailTable > .Content > .Row > .Cell.Items > .Item {
+		display: inline-block;
+		margin-left: 1px;
+		vertical-align: middle;
+	}
+	.GameDetailTable > .Content > .Row > .Cell.Items > .Item > .NoItem {
+		width: 22px;
+		height: 22px;
+		border-radius: 3px;
+		background: rgba(0, 0, 0, 0.15);
 	}
 </style>
