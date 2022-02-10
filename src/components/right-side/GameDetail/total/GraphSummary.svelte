@@ -1,60 +1,58 @@
 <script lang="ts">
-	import type { WinLoseType } from '../../types';
-	import type { TeamSummary } from '../types';
+	import type { Participant, Team } from '../../../../schema/api/matches';
 
-	export let winLose: WinLoseType = 'Win';
-	export let graphScore: TeamSummary = {
-		Win: {
-			kill: 0,
-			gold: 0,
-		},
-		Lose: {
-			kill: 0,
-			gold: 0,
-		},
-	};
+	export let winLose = true;
+	export let teams: Team[] = [];
+	export let participants: Participant[] = [];
 
-	const loseWin = winLose === 'Win' ? 'Lose' : 'Win';
+	let myTeam = teams.find((team) => team.win === winLose);
+	let enemyTeam = teams.find((team) => team.win === !winLose);
+	let myTeamGold = participants
+		.filter((part) => part.win === winLose)
+		.reduce((acc, part) => acc + part.goldEarned, 0);
+	let enemyTeamGold = participants
+		.filter((part) => part.win === !winLose)
+		.reduce((acc, part) => acc + part.goldEarned, 0);
 </script>
 
 <div class="summary-graph">
 	<div class="total--container">
 		<div class="text graph--title">Total Kill</div>
-		<div class="text graph--data graph--data__left">{graphScore[winLose].kill}</div>
+		<div class="text graph--data graph--data__left">{myTeam.objectives.champion.kills}</div>
 		<div class="graph--container">
 			<div
 				class="graph"
-				class:win--team={winLose === 'Win'}
-				class:lose--team={winLose === 'Lose'}
-				style={`flex:${graphScore[winLose].kill}`}
+				class:win--team={winLose}
+				class:lose--team={!winLose}
+				style={`flex:${myTeam.objectives.champion.kills}`}
 			/>
 			<div
 				class="graph"
-				class:win--team={loseWin === 'Win'}
-				class:lose--team={loseWin === 'Lose'}
-				style={`flex:${graphScore[loseWin].kill}`}
+				class:win--team={!winLose}
+				class:lose--team={winLose}
+				style={`flex:${enemyTeam.objectives.champion.kills}`}
 			/>
 		</div>
-		<div class="text graph--data graph--data__right">{graphScore[loseWin].kill}</div>
+		<div class="text graph--data graph--data__right">{enemyTeam.objectives.champion.kills}</div>
 	</div>
 	<div class="total--container">
 		<div class="text graph--title">Total Gold</div>
-		<div class="text graph--data graph--data__left">{graphScore[winLose].gold}</div>
+		<div class="text graph--data graph--data__left">{myTeamGold}</div>
 		<div class="graph--container">
 			<div
 				class="graph"
-				class:win--team={winLose === 'Win'}
-				class:lose--team={winLose === 'Lose'}
-				style={`flex:${graphScore[winLose].gold}`}
+				class:win--team={winLose}
+				class:lose--team={!winLose}
+				style={`flex:${myTeamGold}`}
 			/>
 			<div
 				class="graph"
-				class:win--team={loseWin === 'Win'}
-				class:lose--team={loseWin === 'Lose'}
-				style={`flex:${graphScore[loseWin].gold}`}
+				class:win--team={!winLose}
+				class:lose--team={winLose}
+				style={`flex:${enemyTeamGold}`}
 			/>
 		</div>
-		<div class="text graph--data graph--data__right">{graphScore[loseWin].gold}</div>
+		<div class="text graph--data graph--data__right">{enemyTeamGold}</div>
 	</div>
 </div>
 

@@ -1,11 +1,11 @@
 <script lang="ts">
 	/* eslint-disable @typescript-eslint/restrict-template-expressions */
 	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-	import { ApiConstants } from '../../../../../apis/ApiConstants';
-	import type { Participant } from '../../../../../schema/api/matches';
-	import { getKdaColorByStats, getKdaRatio } from '../../../../../utils/KDAUtil';
-	import ChampionImageCircle from '../../../../image/champion/ChampionImageCircle.svelte';
-	import { popoverText } from '../../../../tooltip/Tooltip';
+	import type { Participant } from '../../../../schema/api/matches';
+	import { ApiConstants } from '../../../../apis/ApiConstants';
+	import { getKdaColorByStats, getKdaRatio } from '../../../../utils/KDAUtil';
+	import ChampionImageCircle from '../../../image/champion/ChampionImageCircle.svelte';
+	import { popoverText } from '../../../tooltip/Tooltip';
 
 	export let summonerId = '';
 	export let participants: Participant[] = [];

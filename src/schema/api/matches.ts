@@ -161,10 +161,10 @@ export interface PerkStyleSelection {
 }
 
 export interface Team {
-	bans: Ban[];
-	objectives: Objectives;
-	teamId: number;
-	win: boolean;
+	bans?: Ban[];
+	objectives?: Objectives;
+	teamId?: number;
+	win?: boolean;
 }
 
 export interface Ban {
@@ -173,12 +173,12 @@ export interface Ban {
 }
 
 export interface Objectives {
-	baron: Objective;
-	champion: Objective;
-	dragon: Objective;
-	inhibitor: Objective;
-	riftHerald: Objective;
-	tower: Objective;
+	baron?: Objective;
+	champion?: Objective;
+	dragon?: Objective;
+	inhibitor?: Objective;
+	riftHerald?: Objective;
+	tower?: Objective;
 }
 
 export interface Objective {

@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Match } from '../../../../schema/api/matches';
-	import type { TeamSummary } from './types';
-	import TotalSummary from './summary/TotalSummary.svelte';
-	import TotalTable from './table/TotalTable.svelte';
+	import TotalSummary from './TotalSummary.svelte';
+	import TotalTable from './TotalTable.svelte';
 
 	export let summonerId = '';
 	export let matches: Match = {};
@@ -17,7 +16,11 @@
 		teamId={participant.teamId}
 		winLose={participant.win}
 	/>
-	<!-- <TotalSummary {winLose} {scores} /> -->
+	<TotalSummary
+		participants={matches.info.participants}
+		teams={matches.info.teams}
+		winLose={participant.win}
+	/>
 	<TotalTable
 		{summonerId}
 		participants={matches.info.participants.filter((part) => part.win !== participant.win)}

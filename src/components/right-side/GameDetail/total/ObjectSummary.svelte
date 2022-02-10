@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { popoverText } from '../../../../tooltip/Tooltip';
-	import type { WinLoseType } from '../../types';
-	import type { ScoreSummary } from '../types';
+	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+	import type { Objectives } from '../../../../schema/api/matches';
+	import { popoverText } from '../../../tooltip/Tooltip';
 
-	export let winLose: WinLoseType = 'Win';
-	export let objectScore: ScoreSummary = {
-		baron: 0,
-		dragon: 0,
-		tower: 0,
-	};
+	export let winLose = true;
+	export let objectives: Objectives = {};
 
 	const objectLabel = {
 		baron: '바론',
@@ -18,16 +14,16 @@
 </script>
 
 <div class="Team">
-	{#each Object.entries(objectScore) as [key, value]}
+	{#each Object.entries(objectives) as [key, value]}
 		{#if objectLabel[key]}
 			<div class="ObjectScore" use:popoverText={{ text: objectLabel[key] }}>
 				<img
-					src={`assets/images/objects/icon-${key}-${winLose === 'Win' ? 'b' : 'r'}.png`}
+					src={`assets/images/objects/icon-${key}-${winLose ? 'b' : 'r'}.png`}
 					class="Image"
-					title={objectLabel[key]}
+					title={objectLabel[key].kills}
 					alt={key}
 				/>
-				{value}
+				{value.kills}
 			</div>
 		{/if}
 	{/each}

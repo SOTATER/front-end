@@ -7,5 +7,3 @@ export interface Tab {
 }
 
 export type TabType = 'overview' | 'teamAnalysis' | 'builds' | 'gold';
-
-export type WinLoseType = 'Win' | 'Lose' | 'Remake';
