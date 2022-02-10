@@ -2,9 +2,10 @@
 	import { ApiConstants } from '../../apis/ApiConstants';
 	import { popoverSpell } from '../tooltip/Tooltip';
 	export let spellName: string;
+	export let size = 22;
 </script>
 
-<div class="rune-image" use:popoverSpell={{ spellName }}>
+<div class="rune-image" use:popoverSpell={{ spellName }} style="width:{size}px;height:{size}px">
 	<img
 		class="image"
 		src={'http://ddragon.leagueoflegends.com/cdn/' +
@@ -17,8 +18,6 @@
 
 <style>
 	.rune-image {
-		width: 22px;
-		height: 22px;
 		overflow: hidden;
 	}
 	.image {

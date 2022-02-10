@@ -7,6 +7,7 @@
 	import { getKdaColorByStats, getKdaRatio } from '../../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../tooltip/Tooltip';
+	import SpellImage from '../../../image/SpellImage.svelte';
 
 	export let summonerId = '';
 	export let gameDuration = 0;
@@ -65,8 +66,12 @@
 						/>
 					</div>
 				</td>
-				<!-- TODO: 소환자 스펠 표시 -->
-				<td class="SummonerSpell Cell" />
+				<!-- TODO: 소환자 스펠 표시 ({spell1Id, spell2Id}로 스펠이름 가져오기)-->
+				<td class="SummonerSpell Cell">
+					<SpellImage spellName="SummonerSmite" size={16} />
+					<div class="SummonerSpellSpace" />
+					<SpellImage spellName="SummonerFlash" size={16} />
+				</td>
 				<!-- TODO: 룬 표시 -->
 				<td class="Rune Cell" />
 				<td class="SummonerName Cell">
@@ -213,6 +218,9 @@
 	.GameDetailTable > .Content > .Row > .Cell.ChampionImage {
 		padding-left: 10px;
 		padding-right: 4px;
+	}
+	.GameDetailTable > .Content > .Row > .Cell.SummonerSpell > .SummonerSpellSpace {
+		margin-bottom: 2px;
 	}
 	.GameDetailTable > .Content > .Row > .Cell.SummonerName {
 		padding-left: 5px;
