@@ -2,7 +2,6 @@
 	import { ApiConstants } from '../../apis/ApiConstants';
 	import { popoverItem } from '../tooltip/Tooltip';
 	export let itemId: number;
-	// console.log(ApiConstants.spells[spellId].image.full);
 </script>
 
 <div class="rune-image" use:popoverItem={{ itemId }}>

@@ -6,7 +6,6 @@
 		/<(\/)?([a-zA-Z-]*)(\s[a-zA-Z-]*=[^>]*)?(\s)*(\/)?>/g,
 		'',
 	);
-	console.log(rune);
 </script>
 
 <div class="rune-popup">

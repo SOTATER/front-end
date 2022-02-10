@@ -2,12 +2,10 @@
 	import { ApiConstants } from '../../apis/ApiConstants';
 	export let itemId: number;
 	const item = ApiConstants.items[itemId];
-	console.log(item);
 	const parsedData = new DOMParser().parseFromString(
 		item.description.replace(/<br>/g, '').replace(/<li>/g, ''),
 		'application/xml',
 	);
-	console.log(parsedData.querySelector('mainText').childNodes);
 	const statsMap = new Map<string, string>();
 	let isStatName = true;
 	let statName = '';
@@ -36,8 +34,6 @@
 	if (advancedStatString !== '') {
 		advancedStats.push(advancedStatString);
 	}
-	console.log(advancedStats);
-	console.log(statsMap);
 	const statArray: [string, string][] = [];
 	for (const stat of statsMap.entries()) {
 		statArray.push(stat);
