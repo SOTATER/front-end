@@ -6,13 +6,11 @@
 	import AutocompleteListItem from './AutocompleteListItem.svelte';
 	import AutocompleteHistory from './AutocompleteHistory.svelte';
 	import { addHistory, history } from '../../stores/HistoryStore';
-	import { getSummoners } from '../../apis/services/summonersService';
 
 	const axiosInstance = axios.create({
 		baseURL: 'https://restcountries.eu/rest/v2/name/',
 		timeout: 3000,
 	});
-	console.log('aaa');
 	let isOpen = false;
 	let isLoading = true;
 	let countries: any[] = [];
