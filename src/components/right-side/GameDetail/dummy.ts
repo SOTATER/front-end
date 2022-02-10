@@ -12,7 +12,6 @@ export const getMatches = (): Match => {
 		info: {
 			gameCreation: 0,
 			gameDuration: 1164862,
-			gameEndTimestamp: 0,
 			gameId: 0,
 			gameMode: 'CLASSIC',
 			gameName: 'teambuilder-match-0000000000',

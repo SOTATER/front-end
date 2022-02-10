@@ -12,7 +12,9 @@
 <div class="GameDetailTableWrap">
 	<TotalTable
 		{summonerId}
+		gameDuration={matches.info.gameDuration}
 		participants={matches.info.participants.filter((part) => part.win === participant.win)}
+		teams={matches.info.teams}
 		teamId={participant.teamId}
 		winLose={participant.win}
 	/>
@@ -23,7 +25,9 @@
 	/>
 	<TotalTable
 		{summonerId}
+		gameDuration={matches.info.gameDuration}
 		participants={matches.info.participants.filter((part) => part.win !== participant.win)}
+		teams={matches.info.teams}
 		teamId={participant.teamId === 100 ? 200 : 100}
 		winLose={!participant.win}
 	/>

@@ -1,14 +1,17 @@
 <script lang="ts">
 	/* eslint-disable @typescript-eslint/restrict-template-expressions */
 	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-	import type { Participant } from '../../../../schema/api/matches';
+	/* eslint-disable @typescript-eslint/restrict-plus-operands */
+	import type { Participant, Team } from '../../../../schema/api/matches';
 	import { ApiConstants } from '../../../../apis/ApiConstants';
 	import { getKdaColorByStats, getKdaRatio } from '../../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../tooltip/Tooltip';
 
 	export let summonerId = '';
+	export let gameDuration = 0;
 	export let participants: Participant[] = [];
+	export let teams: Team[] = [];
 	export let teamId = 100;
 	export let winLose = true;
 
@@ -90,8 +93,15 @@
 					</span>
 					<div class="KDA">
 						<span>{`${part.kills}/${part.deaths}/${part.assists}`}</span>
-						<!-- TODO: 킬관여율 계산: (킬+어시) / 팀 토탈 킬 -->
-						<span use:popoverText={{ text: '킬관여율' }}>(27%)</span>
+						<!-- 킬관여율 계산: (개인 킬수 + 어시스트수) / 팀 총 킬수 -->
+						<span use:popoverText={{ text: '킬관여율' }}
+							>{`(${(
+								((part.kills + part.assists) /
+									teams.find((team) => team.win === winLose).objectives.champion
+										.kills) *
+								100
+							).toFixed(0)}%)`}</span
+						>
 					</div>
 				</td>
 				<td
@@ -102,8 +112,19 @@
 				>
 					<div class="ChampionDamage">{part.totalDamageDealtToChampions}</div>
 					<div class="Progress">
-						<!-- TODO: 피해량 계산: 개인당 챔피언가한피해량 / 경기 개인 최대 챔피언가한피해량  -->
-						<div class="Fill" style="width: 51%;" />
+						<!-- TODO: 피해량 계산: 개인당 챔피언에게 가한 피해량 / 모든 팀에서 가장 많은 챔피언에게 가한 피해량  -->
+						<div
+							class="Fill"
+							style={`width: ${(
+								(part.totalDamageDealtToChampions /
+									Math.max(
+										...participants.map(
+											(part) => part.totalDamageDealtToChampions,
+										),
+									)) *
+								100
+							).toFixed(0)}%;`}
+						/>
 					</div>
 				</td>
 				<td
@@ -122,8 +143,12 @@
 				</td>
 				<td class="CS Cell">
 					<div class="CS">{part.totalMinionsKilled}</div>
-					<!-- TODO: CSPerMinute 계산: CS / 경기시간(분) -->
-					<div>분당 6.8</div>
+					<!-- CSPerMinute 계산: CS / 경기시간(분) -->
+					<div>
+						{`분당 ${(part.totalMinionsKilled / (gameDuration / (60 * 1000))).toFixed(
+							1,
+						)}`}
+					</div>
 				</td>
 				<!-- TODO: 아이템 표시 -->
 				<td class="Items Cell" />
