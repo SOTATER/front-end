@@ -4,7 +4,9 @@
 	import { GameDetailTeam } from './team';
 	import { GameDetailTotal } from './total';
 	import GameDetailTabs from './GameDetailTabs.svelte';
-	import type { Tab, WinLoseType } from './types';
+	import type { Tab } from './types';
+	import type { Participant } from '../../../schema/api/participants';
+	import { getParticipants } from './total/dummy';
 
 	let tabs: Tab[] = [
 		{ label: '종합', value: 'overview', component: GameDetailTotal },
@@ -13,8 +15,10 @@
 		{ label: 'etc', value: 'gold', component: GameDetailEtc },
 	];
 
-	// TODO: 승패 여부 가져오기
-	let winLose: WinLoseType = 'Win';
+	// TODO: 소환사 아이디 가져오기
+	let summonerId = 'summonerId';
+	// TODO: 매치 데이터 가져오기
+	let participants: Participant[] = getParticipants();
 </script>
 
-<GameDetailTabs {tabs} {winLose} />
+<GameDetailTabs {tabs} {summonerId} {participants} />

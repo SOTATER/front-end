@@ -6,15 +6,16 @@
 	import { getKdaColorByStats, getKdaRatio } from '../../../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../../tooltip/Tooltip';
-	import type { TeamColor, WinLoseType } from '../../types';
 
+	export let summonerId = '';
 	export let participants: Participant[] = [];
-	let participantId = 1; // TODO: 해당 소환사에 대한 participantId 가져오기
-	let winLose: WinLoseType = participants[participantId].win ? 'Win' : 'Lose'; // TODO: 무효시에는??
-	let teamColor: TeamColor = participants[participantId].teamId === 100 ? 'blue' : 'red';
+	export let teamId = 100;
+	export let winLose = true;
+
+	let participant = participants.find((part) => part.summonerId === summonerId);
 </script>
 
-<table class={`GameDetailTable ${winLose}`}>
+<table class={`GameDetailTable ${winLose ? 'Win' : 'Lose'}`}>
 	<colgroup>
 		<col width="44px" />
 		<col width="18px" />
@@ -30,10 +31,8 @@
 	<thead class="Header">
 		<tr class="Row">
 			<th class="HeaderCell" colspan="4">
-				<span class="GameResult"
-					>{winLose === 'Win' ? '승리' : winLose === 'Lose' ? '패배' : ''}
-				</span>
-				{`(${teamColor === 'blue' ? '블루' : '레드'}팀)`}
+				<span class="GameResult">{winLose ? '승리' : '패배'} </span>
+				{`(${teamId === 100 ? '블루' : '레드'}팀)`}
 			</th>
 			<th class="HeaderCell">티어</th>
 			<th class="HeaderCell">KDA</th>
@@ -49,7 +48,7 @@
 				class="Row"
 				class:first={i === 0}
 				class:last={i === participants.length - 1}
-				class:isRequester={i === participantId}
+				class:isRequester={i === participant?.participantId}
 			>
 				<td class="ChampionImage Cell">
 					<div
@@ -91,7 +90,7 @@
 					</span>
 					<div class="KDA">
 						<span>{`${part.kills}/${part.deaths}/${part.assists}`}</span>
-						<!-- TODO: 킬관여율 계산 -->
+						<!-- TODO: 킬관여율 계산: (킬+어시) / 팀 토탈 킬 -->
 						<span use:popoverText={{ text: '킬관여율' }}>(27%)</span>
 					</div>
 				</td>
@@ -103,7 +102,7 @@
 				>
 					<div class="ChampionDamage">{part.totalDamageDealtToChampions}</div>
 					<div class="Progress">
-						<!-- TODO: 피해량 계산 -->
+						<!-- TODO: 피해량 계산: 개인당 챔피언가한피해량 / 경기 개인 최대 챔피언가한피해량  -->
 						<div class="Fill" style="width: 51%;" />
 					</div>
 				</td>
@@ -123,7 +122,7 @@
 				</td>
 				<td class="CS Cell">
 					<div class="CS">{part.totalMinionsKilled}</div>
-					<!-- TODO: CSPerMinute 계산 -->
+					<!-- TODO: CSPerMinute 계산: CS / 경기시간(분) -->
 					<div>분당 6.8</div>
 				</td>
 				<!-- TODO: 아이템 표시 -->
