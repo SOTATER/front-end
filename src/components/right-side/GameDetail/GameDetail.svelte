@@ -6,7 +6,7 @@
 	import { GameDetailEtc } from './etc';
 	import { GameDetailTeam } from './team';
 	import { GameDetailTotal } from './total';
-	import { getMatches } from './dummy';
+	import { getMatches } from '../dummy';
 
 	let tabs: Tab[] = [
 		{ label: '종합', value: 'overview', component: GameDetailTotal },

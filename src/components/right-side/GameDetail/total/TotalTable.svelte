@@ -214,6 +214,10 @@
 		background-color: #d8e4ec;
 		border: solid 1px #bacedc;
 	}
+	.GameDetailTable.Lose > .Content {
+		background-color: #e9e0e0;
+		border: 1px solid #d8c0be;
+	}
 	.GameDetailTable > .Content > .Row > .Cell {
 		padding: 3px 0;
 		vertical-align: middle;
