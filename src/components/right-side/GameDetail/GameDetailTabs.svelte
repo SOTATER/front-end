@@ -1,15 +1,15 @@
 <script lang="ts">
 	import type { Match } from '../../../schema/api/matches';
-	import type { Tab, TabType } from './types';
+	import type { GameDetailTab, GameDetailTabType } from '../types';
 
-	export let tabs: Tab[] = [];
+	export let tabs: GameDetailTab[] = [];
 	export let summonerId = '';
 	export let matches: Match = {};
 
-	let activeTab: TabType = 'overview';
+	let activeTab: GameDetailTabType = 'overview';
 	let participant = matches.info.participants.find((part) => part.summonerId === summonerId);
 
-	const handleClick = (tab: TabType) => () => (activeTab = tab);
+	const handleClick = (tab: GameDetailTabType) => () => (activeTab = tab);
 </script>
 
 <div class="GameDetail" class:Win={participant.win} class:Lose={!participant.win}>

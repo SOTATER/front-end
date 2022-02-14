@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Match } from '../../../schema/api/matches';
-	import type { Tab } from './types';
+	import type { GameDetailTab } from '../types';
 	import GameDetailTabs from './GameDetailTabs.svelte';
 	import { GameDetailBuild } from './build';
 	import { GameDetailEtc } from './etc';
@@ -8,7 +8,7 @@
 	import { GameDetailTotal } from './total';
 	import { getMatches } from '../dummy';
 
-	let tabs: Tab[] = [
+	let tabs: GameDetailTab[] = [
 		{ label: '종합', value: 'overview', component: GameDetailTotal },
 		{ label: '팀 분석', value: 'teamAnalysis', component: GameDetailTeam },
 		{ label: '빌드', value: 'builds', component: GameDetailBuild },
