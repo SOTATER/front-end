@@ -1,16 +1,18 @@
 <script lang="ts">
-	import type { Tab, TabType, WinLoseType } from './types';
+	import type { Match } from '../../../schema/api/matches';
+	import type { GameDetailTab, GameDetailTabType } from '../types';
 
-	export let tabs: Tab[] = [];
-	export let winLose: WinLoseType = 'Win';
+	export let tabs: GameDetailTab[] = [];
+	export let summonerId = '';
+	export let matches: Match = {};
 
-	let activeTab: TabType = 'overview';
+	let activeTab: GameDetailTabType = 'overview';
+	let participant = matches.info.participants.find((part) => part.summonerId === summonerId);
 
-	//TODO: 각 탭 별 API 호출
-	const handleClick = (tab: TabType) => () => (activeTab = tab);
+	const handleClick = (tab: GameDetailTabType) => () => (activeTab = tab);
 </script>
 
-<div class="GameDetail" class:Win={winLose === 'Win'} class:Lose={winLose === 'Lose'}>
+<div class="GameDetail" class:Win={participant.win} class:Lose={!participant.win}>
 	<div class="MatchDetailLayout">
 		<div class="MatchDetailHeader">
 			<ul class="tabHeaders">
@@ -18,8 +20,8 @@
 					<li
 						class="tabHeader"
 						class:active={activeTab === value}
-						class:Win={winLose === 'Win'}
-						class:Lose={winLose === 'Lose'}
+						class:Win={participant.win}
+						class:Lose={!participant.win}
 					>
 						<a href="/" on:click|preventDefault={handleClick(value)}>{label}</a>
 					</li>
@@ -29,7 +31,7 @@
 		{#each tabs as { value, component }}
 			{#if activeTab == value}
 				<div class="MatchDetailContent">
-					<svelte:component this={component} />
+					<svelte:component this={component} {summonerId} {matches} />
 				</div>
 			{/if}
 		{/each}

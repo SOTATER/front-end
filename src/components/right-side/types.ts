@@ -1,3 +1,5 @@
+import type { SvelteComponent } from 'svelte';
+
 export const GAME_COMMON_TYPES = ['total', 'soloranked', 'flexranked'] as const;
 export type GameCommonType = typeof GAME_COMMON_TYPES[number];
 
@@ -21,4 +23,12 @@ export interface GameOtherTypeSelect {
 	id: number;
 	name: string;
 	value: GameOtherType;
+}
+
+export type GameDetailTabType = 'overview' | 'teamAnalysis' | 'builds' | 'gold';
+
+export interface GameDetailTab {
+	label: string;
+	value: GameDetailTabType;
+	component: typeof SvelteComponent;
 }

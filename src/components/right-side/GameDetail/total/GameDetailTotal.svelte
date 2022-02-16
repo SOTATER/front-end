@@ -1,30 +1,36 @@
 <script lang="ts">
-	import type { WinLoseType } from '../types';
-	import type { TeamSummary } from './types';
-	import TotalSummary from './summary/TotalSummary.svelte';
+	import type { Match } from '../../../../schema/api/matches';
+	import TotalSummary from './TotalSummary.svelte';
+	import TotalTable from './TotalTable.svelte';
 
-	export let winLose: WinLoseType = 'Win';
-	// TODO: 바론/드래곤/타워/그래프 데이터 가져오기
-	export let scores: TeamSummary = {
-		Win: {
-			baron: 0,
-			dragon: 0,
-			tower: 4,
-			kill: 45,
-			gold: 63810,
-		},
-		Lose: {
-			baron: 0,
-			dragon: 0,
-			tower: 1,
-			kill: 36,
-			gold: 59391,
-		},
-	};
+	export let summonerId = '';
+	export let matches: Match = {};
+
+	let participant = matches.info.participants.find((part) => part.summonerId === summonerId);
 </script>
 
 <div class="GameDetailTableWrap">
-	<TotalSummary {winLose} {scores} />
+	<TotalTable
+		{summonerId}
+		gameDuration={matches.info.gameDuration}
+		participants={matches.info.participants.filter((part) => part.win === participant.win)}
+		teams={matches.info.teams}
+		teamId={participant.teamId}
+		winLose={participant.win}
+	/>
+	<TotalSummary
+		participants={matches.info.participants}
+		teams={matches.info.teams}
+		winLose={participant.win}
+	/>
+	<TotalTable
+		{summonerId}
+		gameDuration={matches.info.gameDuration}
+		participants={matches.info.participants.filter((part) => part.win !== participant.win)}
+		teams={matches.info.teams}
+		teamId={participant.teamId === 100 ? 200 : 100}
+		winLose={!participant.win}
+	/>
 </div>
 
 <style>

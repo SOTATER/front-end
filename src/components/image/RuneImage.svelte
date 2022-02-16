@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { ApiConstants } from '../../apis/ApiConstants';
 	import { popoverRune } from '../tooltip/Tooltip';
+
 	export let runeId: number;
-	console.log(ApiConstants.runes[runeId].icon);
+	export let size = 22;
 </script>
 
-<div class="rune-image" use:popoverRune={{ runeId }}>
+<div class="rune-image" use:popoverRune={{ runeId }} style="width:{size}px;height:{size}px">
 	<img
 		class="image"
 		src={'http://ddragon.leagueoflegends.com/cdn/img/' + ApiConstants.runes[runeId].icon}
@@ -15,8 +16,6 @@
 
 <style>
 	.rune-image {
-		width: 22px;
-		height: 22px;
 		overflow: hidden;
 		border-radius: 50%;
 	}
