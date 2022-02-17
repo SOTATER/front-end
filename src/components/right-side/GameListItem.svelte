@@ -201,21 +201,23 @@
 			<div class="StatsButton">
 				<div class="Content">
 					<div class="Item">
-						<a href="#" class="Button Replay OpenSpectateButton">
+						<button class="Button Replay OpenSpectateButton">
 							<span class="__spSite __spSite-159" />
-						</a>
+						</button>
 					</div>
 					<div class="Item">
-						<a href="#" class="Button MatchDetail">
+						<button
+							class="Button MatchDetail"
+							on:click={() => {
+								isToggled = !isToggled;
+							}}
+						>
 							<span
 								class="__spSite"
 								class:__spSite-198={!isWon}
 								class:__spSite-194={isWon}
 								class:Off={!isToggled}
 								class:On={isToggled}
-								on:click={() => {
-									isToggled = !isToggled;
-								}}
 							/>
 							<span
 								class="__spSite"
@@ -223,11 +225,8 @@
 								class:__spSite-193={isWon}
 								class:Off={isToggled}
 								class:On={!isToggled}
-								on:click={() => {
-									isToggled = !isToggled;
-								}}
 							/>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -576,6 +575,10 @@
 	}
 	.GameItem > .Content > .StatsButton .Content .Item .Button.MatchDetail {
 		height: 100%;
+		border: 0;
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
 	}
 
 	.GameItem > .Content > .StatsButton .Content .Item .Button {
