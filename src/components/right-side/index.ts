@@ -1,1 +1,1 @@
-export { default as GameList } from './GameList.svelte';
+export { default as GameList } from './MainContent.svelte';
