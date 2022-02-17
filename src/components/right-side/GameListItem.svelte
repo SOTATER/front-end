@@ -6,6 +6,7 @@
 	import RuneImage from '../image/RuneImage.svelte';
 	import SpellImage from '../image/SpellImage.svelte';
 	import { popoverText } from '../tooltip/Tooltip';
+	import GameDetail from './GameDetail/GameDetail.svelte';
 	import type { Items, Spells, Team } from './GameListItemTypes';
 
 	export let isWon = true;
@@ -233,6 +234,9 @@
 		</div>
 	</div>
 </div>
+{#if isToggled}
+	<GameDetail />
+{/if}
 
 <style>
 	.GameItemWrap {
