@@ -185,3 +185,172 @@ export interface Objective {
 	first: boolean;
 	kills: number;
 }
+
+/* Timelines */
+
+export interface MatchTimeline {
+	metadata: {
+		/* Match data version. */
+		dataVersion: string;
+		/* Match id. */
+		matchId: string;
+		/* A list of encrypted participant PUUIDs. */
+		participants: string[];
+	};
+	info: {
+		frames: Frame[];
+		frameInterval: number;
+	};
+}
+
+export interface Frame {
+	participantFrames: {
+		[key: string]: ParticipantFrame; // the keys are just the numbers 1-10
+	};
+	events: Event[];
+	timestamp: number;
+}
+
+export interface ParticipantFrame {
+	championStats: ChampionStats;
+	currentGold: number;
+	damageStats: DamageStats;
+	goldPerSecond: number;
+	jungleMinionsKilled: number;
+	level: number;
+	minionsKilled: number;
+	participantId: number;
+	position: Position;
+	timeEnemySpentControlled: number;
+	totalGold: number;
+	xp: number;
+}
+
+export interface ChampionStats {
+	abilityHaste?: number;
+	abilityPower?: number;
+	armor?: number;
+	armorPen?: number;
+	armorPenPercent?: number;
+	attackDamage?: number;
+	attackSpeed?: number;
+	bonusArmorPenPercent?: number;
+	bonusMagicPenPercent?: number;
+	ccReduction?: number;
+	cooldownReduction?: number;
+	health?: number;
+	healthMax?: number;
+	healthRegen?: number;
+	lifesteal?: number;
+	magicPen?: number;
+	magicPenPercent?: number;
+	magicResist?: number;
+	movementSpeed?: number;
+	omnivamp?: number;
+	physicalVamp?: number;
+	power?: number;
+	powerMax?: number;
+	powerRegen?: number;
+	spellVamp?: number;
+}
+
+export interface DamageStats {
+	magicDamageDone: number;
+	magicDamageDoneToChampions: number;
+	magicDamageTaken: number;
+	physicalDamageDone: number;
+	physicalDamageDoneToChampions: number;
+	physicalDamageTaken: number;
+	totalDamageDone: number;
+	totalDamageDoneToChampions: number;
+	totalDamageTaken: number;
+	trueDamageDone: number;
+	trueDamageDoneToChampions: number;
+	trueDamageTaken: number;
+}
+
+export interface Position {
+	x: number;
+	y: number;
+}
+
+export interface Event {
+	realTimestamp?: number;
+	timestamp: number;
+	type: EventType;
+	itemId?: number;
+	participantId?: number;
+	levelUpType?: string;
+	skillSlot?: number;
+	creatorId?: number;
+	wardType?: string;
+	level?: number;
+	bounty?: number;
+	killStreakLength?: number;
+	killerId?: number;
+	position?: Position;
+	victimDamageDealt?: VictimDamageDealt[];
+	victimDamageReceived?: VictimDamageReceived[];
+	victimId?: number;
+	killType?: string;
+	afterId?: number;
+	beforeId?: number;
+	goldGain?: number;
+	assistingParticipantIds?: number[];
+	laneType?: string;
+	teamId?: number;
+	killerTeamId?: number;
+	monsterSubType?: string;
+	monsterType?: string;
+	buildingType?: string;
+	towerType?: string;
+	transformType?: string;
+	multiKillLength?: number;
+	gameId?: number;
+	winningTeam?: number;
+}
+
+export type EventType =
+	| 'CHAMPION_KILL'
+	| 'CHAMPION_SPECIAL_KILL'
+	| 'WARD_PLACED'
+	| 'WARD_KILL'
+	| 'BUILDING_KILL'
+	| 'ELITE_MONSTER_KILL'
+	| 'ITEM_PURCHASED'
+	| 'ITEM_SOLD'
+	| 'ITEM_DESTROYED'
+	| 'ITEM_SOLD'
+	| 'ITEM_UNDO'
+	| 'TURRET_PLATE_DESTROYED'
+	| 'SKILL_LEVEL_UP'
+	| 'LEVEL_UP'
+	| 'ASCENDED_EVENT'
+	| 'CAPTURE_POINT'
+	| 'PORO_KING_SUMMON'
+	| 'PAUSE_END'
+	| 'GAME_END';
+
+export interface VictimDamageDealt {
+	basic: boolean;
+	magicDamage: number;
+	name: string;
+	participantId: number;
+	physicalDamage: number;
+	spellName: string;
+	spellSlot: number;
+	trueDamage: number;
+	type: string;
+}
+
+export interface VictimDamageReceived {
+	basic: boolean;
+	magicDamage: number;
+	name: string;
+	participantId: number;
+	physicalDamage: number;
+	spellName: string;
+	spellSlot: number;
+	trueDamage: number;
+	type: string;
+}
