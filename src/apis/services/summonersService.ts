@@ -1,11 +1,7 @@
-import { ApiClient } from '../ApiClient';
+import type { Summoner } from '../../schema/api/summoners';
+import API from '../ApiClient';
 
-export const getSummoners = async (summoers: string): Promise<unknown[]> => {
-	const apiClient = new ApiClient('api/summoners/search-by-name/');
-	try {
-		const result = await apiClient.gets(summoers);
-		return result as unknown[];
-	} catch (e) {
-		throw new Error('error');
-	}
+export const getSummonerByName = async (name: string): Promise<Summoner> => {
+	const { data } = await API.get(name);
+	return data as Summoner;
 };
