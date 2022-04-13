@@ -8,11 +8,12 @@
 	import type { Item } from './schema/api/items';
 	import type { Spell } from './schema/api/spells';
 	import type { Rune } from './schema/api/runes';
+	import ddragon, { getChampions, getVersion } from './stores/DDragonStore';
 	export const url = '';
 
 	async function fetchDataDragon() {
-		const version = await axios.get('https://ddragon.leagueoflegends.com/api/versions.json');
-		ApiConstants.version = (version.data as string[])[0];
+		await getVersion();
+		ApiConstants.version = $ddragon.version; // TODO: ddragonStore 구현 완료되는대로 ApiConstants 제거 예정
 		const items = await axios.get(
 			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/item.json`,
 		);
@@ -22,10 +23,8 @@
 		const runes = await axios.get(
 			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/runesReforged.json`,
 		);
-		const champions = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/champion.json`,
-		);
-		console.log(spells);
+		await getChampions($ddragon.version);
+		// console.log(spells);
 		ApiConstants.items = items.data.data as {
 			[id: number]: Item;
 		};
@@ -48,12 +47,11 @@
 				}
 			}
 		}
-		console.log(ApiConstants.runes);
-		ApiConstants.champions = champions.data.data;
+		// console.log(ApiConstants.runes);
+		ApiConstants.champions = $ddragon.champions;
 	}
 
 	let fetchPromise = fetchDataDragon();
-	// });
 </script>
 
 {#await fetchPromise then}
