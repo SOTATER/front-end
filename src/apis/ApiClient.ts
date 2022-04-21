@@ -1,25 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-
-axios.defaults.baseURL = 'http://34.69.171.78';
-axios.defaults.responseType = 'json';
-axios.defaults.timeout = 5000;
 
 export class ApiClient {
 	private client: AxiosInstance = axios.create();
-	private url: string;
-	constructor(url: string) {
-		this.url = url;
+
+	constructor(baseURL: string) {
+		this.client = axios.create({ baseURL, responseType: 'json', timeout: 5000 });
 	}
 
 	async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
-		return this.client.get(this.url + url, config);
-	}
-
-	async gets(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse[]> {
-		return this.client.get(this.url + url, config);
+		try {
+			const response = await this.client.get(url, config);
+			return Promise.resolve(response);
+		} catch (error) {
+			return Promise.reject(error);
+		}
 	}
 
 	async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
-		return this.client.post(this.url + url, data, config);
+		try {
+			const response = await this.client.post(url, data, config);
+			return Promise.resolve(response);
+		} catch (error) {
+			return Promise.reject(error);
+		}
 	}
 }
