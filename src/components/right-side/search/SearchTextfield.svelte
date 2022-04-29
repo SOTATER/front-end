@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
 	import SearchList from './SearchList.svelte';
 
 	// TODO: 최근 플레이한 챔피언 목록 가져오기
@@ -22,7 +22,7 @@
 		{ id: '103', name: '아리' },
 	];
 
-	const allChampionList = Object.entries(ApiConstants.champions).sort(([, a], [, b]) => {
+	const allChampionList = Object.entries($ddragon.champions).sort(([, a], [, b]) => {
 		if (a.name < b.name) {
 			return -1;
 		}

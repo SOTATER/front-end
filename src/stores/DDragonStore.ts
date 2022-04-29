@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
 import { ApiClient } from '../apis/ApiClient';
-import type { DDragonChampion } from '../schema/ddragon/champions';
+import type { DDragonChampionData } from '../schema/ddragon/champions';
 
-export const ddragon = writable<Ddragon>({ version: null, champions: null });
+export const ddragon = writable<DDragon>({ version: null, champions: null });
 
 const API = new ApiClient('https://ddragon.leagueoflegends.com');
 const LOCALE = 'ko_KR';
@@ -26,9 +26,9 @@ export const getChampions = async (version: string): Promise<void> => {
 
 // TODO: getItems, getSpells, getRunes 구현
 
-interface Ddragon {
+interface DDragon {
 	version: string;
-	champions: DDragonChampion;
+	champions: DDragonChampionData;
 }
 
 export default ddragon;

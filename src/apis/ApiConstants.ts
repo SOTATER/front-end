@@ -1,10 +1,9 @@
 import type { Item } from '../schema/api/items';
 import type { Rune } from '../schema/api/runes';
 import type { Spell } from '../schema/api/spells';
-import type { DDragonChampion } from '../schema/ddragon/champions';
 
+// TODO: ddragonStore 구현 완료되는대로 ApiConstants 제거 예정
 export namespace ApiConstants {
-	export let version: string;
 	export let items: {
 		[id: number]: Item;
 	};
@@ -14,5 +13,4 @@ export namespace ApiConstants {
 	export let runes: {
 		[id: number]: Rune;
 	};
-	export let champions: DDragonChampion;
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 	import type { Objectives } from '../../../../schema/api/matches';
 	import { popoverText } from '../../../tooltip/Tooltip';
 

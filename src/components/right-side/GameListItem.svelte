@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
 	import ChampionImageCircle from '../image/champion/ChampionImageCircle.svelte';
 	import ChampionImageSmall from '../image/champion/ChampionImageSmall.svelte';
 	import ItemImage from '../image/ItemImage.svelte';
@@ -123,7 +123,7 @@
 					</div>
 				</div>
 				<div class="ChampionName">
-					{ApiConstants.champions[playedChampion].name}
+					{$ddragon.champions[playedChampion].name}
 				</div>
 			</div>
 			<div class="KDA">

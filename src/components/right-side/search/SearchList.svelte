@@ -1,6 +1,5 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
 	import { clickOutside } from '../../../utils/ClickOutsideUtil';
 	import { disassembleChosung, getChosung } from '../../../utils/SearchUtil';
 	import SearchListItem from './SearchListItem.svelte';
@@ -13,7 +12,7 @@
 	let visible = false;
 
 	// 입력에 따른 챔피언 필터링, 한글 이름순으로 정렬
-	$: filterChampionList = Object.entries(ApiConstants.champions)
+	$: filterChampionList = Object.entries($ddragon.champions)
 		.filter(([, champ]) => {
 			const newInput = disassembleChosung(input);
 			return getChosung(champ.name).includes(newInput) || champ.name.includes(newInput);

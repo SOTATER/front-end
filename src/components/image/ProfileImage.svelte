@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
 	export let profileId: number;
 </script>
 
 <div class="profile-image">
 	<img
 		class="image"
-		src={`http://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/img/profileicon/${profileId}.png`}
+		src={`http://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/img/profileicon/${profileId}.png`}
 		alt={`${profileId}`}
 	/>
 </div>

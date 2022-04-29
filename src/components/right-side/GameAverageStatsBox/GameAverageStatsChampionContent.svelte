@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
 	import { getKdaColor } from '../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../image/champion/ChampionImageCircle.svelte';
 	import type { MostChampions } from './GameAverageStats';
@@ -20,7 +20,7 @@
 	<div class="Image">
 		<ChampionImageCircle championName={champion.name} size={34} />
 	</div>
-	<div class="Name">{ApiConstants.champions[champion.name].name}</div>
+	<div class="Name">{$ddragon.champions[champion.name].name}</div>
 	<div class="WonLose">
 		<b class:red={getWonLoseRatio(champion.win, champion.lose) > 50}>
 			{`${getWonLoseRatio(champion.win, champion.lose)}%`}
