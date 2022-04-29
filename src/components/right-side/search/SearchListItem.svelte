@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Champion } from '../../../schema/api/champions';
+	import type { DDragonChampionData } from '../../../schema/ddragon/champions';
 
 	export let visible = false;
-	export let champion: Champion = null;
+	export let champion: DDragonChampionData = null;
 
-	const handleItemClick = (champion?: Champion) => {
+	const handleItemClick = (champion?: DDragonChampionData) => {
 		// TODO: 챔피언 별 매치 데이터 가져오기
-		console.log(`id: ${champion?.key}, name: ${champion?.name}`);
+		// console.log(`id: ${champion?.key}, name: ${champion?.name}`);
 		visible = false;
 	};
 </script>
