@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
 import { writable } from 'svelte/store';
 import { ApiClient } from '../apis/ApiClient';
 import type { DDragonChampionData } from '../schema/ddragon/champions';
 import type { DDragonItemData } from '../schema/ddragon/items';
+import type { DDragonRunesReforgedData } from '../schema/ddragon/runes';
 import type { DDragonSummonerSpellData } from '../schema/ddragon/spells';
 
 export const ddragon = writable<DDragon>({
@@ -9,6 +12,7 @@ export const ddragon = writable<DDragon>({
 	champions: null,
 	items: null,
 	spells: null,
+	runes: null,
 });
 
 const API = new ApiClient('https://ddragon.leagueoflegends.com');
@@ -49,13 +53,30 @@ export const getSpells = async (version: string): Promise<void> => {
 	});
 };
 
-// TODO: getRunes 구현
+export const getRunes = async (version: string): Promise<void> => {
+	const response = await API.get(`cdn/${version}/data/${LOCALE}/runesReforged.json`);
+	const data = response.data.reduce((acc, cur) => {
+		const { id, key, icon, name } = cur;
+		acc[cur.id] = { id, key, icon, name, shortDesc: '', longDesc: '' };
+		for (const slot of cur.slots) {
+			for (const rune of slot.runes) {
+				acc[rune.id] = rune;
+			}
+		}
+		return acc;
+	}, {});
+	ddragon.update((d) => {
+		d.runes = data;
+		return d;
+	});
+};
 
 interface DDragon {
 	version: string;
 	champions: DDragonChampionData;
 	items: DDragonItemData;
 	spells: DDragonSummonerSpellData;
+	runes: DDragonRunesReforgedData;
 }
 
 export default ddragon;

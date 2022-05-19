@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
+	import { getRuneImageSrc } from '../../utils/ImageUtil';
 	import { popoverRune } from '../tooltip/Tooltip';
 
 	export let runeId: number;
@@ -9,8 +10,8 @@
 <div class="rune-image" use:popoverRune={{ runeId }} style="width:{size}px;height:{size}px">
 	<img
 		class="image"
-		src={'http://ddragon.leagueoflegends.com/cdn/img/' + ApiConstants.runes[runeId].icon}
-		alt={ApiConstants.runes[runeId].name}
+		src={getRuneImageSrc($ddragon.runes[runeId].icon)}
+		alt={$ddragon.runes[runeId].name}
 	/>
 </div>
 

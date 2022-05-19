@@ -9,3 +9,7 @@ export const getItemImageSrc = (version: string, image: string): string => {
 export const getSpellImageSrc = (version: string, image: string): string => {
 	return `http://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${image}`;
 };
+
+export const getRuneImageSrc = (image: string): string => {
+	return `http://ddragon.leagueoflegends.com/cdn/img/${image}`;
+};
