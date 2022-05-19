@@ -1,17 +1,16 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
+	import { getChampionImageSrc } from '../../../utils/ImageUtil';
 	import { popoverText } from '../../tooltip/Tooltip';
 	export let championName: string;
-	function getChampionImageUrl(name: string): string {
-		return `http://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/img/champion/${ApiConstants.champions[name].image.full}`;
-	}
 </script>
 
-<div
-	class="champion-small-image"
-	use:popoverText={{ text: ApiConstants.champions[championName].name }}
->
-	<img class="image" src={getChampionImageUrl(championName)} alt={championName} />
+<div class="champion-small-image" use:popoverText={{ text: $ddragon.champions[championName].name }}>
+	<img
+		class="image"
+		src={getChampionImageSrc($ddragon.version, $ddragon.champions[championName].image.full)}
+		alt={championName}
+	/>
 </div>
 
 <style>

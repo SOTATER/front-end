@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
 	import { getKdaColor } from '../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../tooltip/Tooltip';
@@ -16,7 +16,7 @@
 		playTimes: 0,
 	};
 
-	const championKoreanName = ApiConstants.champions[stats.championName].name;
+	const championKoreanName = $ddragon.champions[stats.championName].name;
 	const kda = ((stats.kill + stats.assist) / stats.death).toFixed(2);
 	const kdaTooltip = `(K ${stats.kill} + A ${stats.assist}) / D ${stats.death}`;
 

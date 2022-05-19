@@ -1,15 +1,13 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/restrict-template-expressions */
-	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 	/* eslint-disable @typescript-eslint/restrict-plus-operands */
 	import type { Participant, Team } from '../../../../schema/api/matches';
-	import { ApiConstants } from '../../../../apis/ApiConstants';
 	import { getKdaColorByStats, getKdaRatio } from '../../../../utils/KDAUtil';
 	import ChampionImageCircle from '../../../image/champion/ChampionImageCircle.svelte';
 	import { popoverText } from '../../../tooltip/Tooltip';
 	import SpellImage from '../../../image/SpellImage.svelte';
 	import RuneImage from '../../../image/RuneImage.svelte';
 	import ItemImage from '../../../image/ItemImage.svelte';
+	import ddragon from '../../../../stores/DDragonStore';
 
 	export let summonerId = '';
 	export let gameDuration = 0;
@@ -59,7 +57,7 @@
 				<td class="ChampionImage Cell">
 					<div
 						class="Image"
-						use:popoverText={{ text: ApiConstants.champions[part.championName].name }}
+						use:popoverText={{ text: $ddragon.champions[part.championName].name }}
 					>
 						<ChampionImageCircle
 							championName={part.championName}

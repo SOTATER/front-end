@@ -1,15 +1,17 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
+	import { getChampionImageSrc } from '../../../utils/ImageUtil';
 	export let championName: string;
 	export let size = 46;
 	export let level: number | undefined = undefined;
-	function getChampionImageUrl(name: string): string {
-		return `http://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/img/champion/${ApiConstants.champions[name].image.full}`;
-	}
 </script>
 
 <div class="champion-image" style="width:{size}px;height:{size}px">
-	<img class="image" src={getChampionImageUrl(championName)} alt={championName} />
+	<img
+		class="image"
+		src={getChampionImageSrc($ddragon.version, $ddragon.champions[championName].image.full)}
+		alt={championName}
+	/>
 	{#if level}
 		<div class="level">{level}</div>
 	{/if}

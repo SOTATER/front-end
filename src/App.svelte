@@ -1,5 +1,4 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 	import Router from 'svelte-spa-router';
 	import { Search } from './components/search';
 	import { Main } from './components/main';
@@ -13,15 +12,14 @@
 
 	async function fetchDataDragon() {
 		await getVersion();
-		ApiConstants.version = $ddragon.version; // TODO: ddragonStore 구현 완료되는대로 ApiConstants 제거 예정
 		const items = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/item.json`,
+			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/item.json`,
 		);
 		const spells = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/summoner.json`,
+			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/summoner.json`,
 		);
 		const runes = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/data/ko_KR/runesReforged.json`,
+			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/runesReforged.json`,
 		);
 		await getChampions($ddragon.version);
 		// console.log(spells);
@@ -48,7 +46,6 @@
 			}
 		}
 		// console.log(ApiConstants.runes);
-		ApiConstants.champions = $ddragon.champions;
 	}
 
 	let fetchPromise = fetchDataDragon();

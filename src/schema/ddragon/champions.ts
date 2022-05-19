@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
-interface DDragonDataWrapper<T> {
-	[key: string]: T;
-}
+import type { DDragonDataWrapper } from './common';
 
 export interface DDragonChampionInfo {
 	attack: number;

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { ApiConstants } from '../../../apis/ApiConstants';
+	import ddragon from '../../../stores/DDragonStore';
 	import ChampionImageCircle from '../../image/champion/ChampionImageCircle.svelte';
 	import WinRatioGraph from './WinRatioGraph.svelte';
 	export let championName: string;
 	export let win: number;
 	export let lose: number;
-	const championKoreanName = ApiConstants.champions[championName].name;
+	const championKoreanName = $ddragon.champions[championName].name;
 	const winRatio = (win * 100) / (win + lose);
 </script>
 
