@@ -4,25 +4,17 @@
 	import { Main } from './components/main';
 	import axios from 'axios';
 	import { ApiConstants } from './apis/ApiConstants';
-	import type { Spell } from './schema/api/spells';
 	import type { Rune } from './schema/api/runes';
-	import ddragon, { getChampions, getItems, getVersion } from './stores/DDragonStore';
-	export const url = '';
+	import ddragon, { getChampions, getItems, getSpells, getVersion } from './stores/DDragonStore';
 
 	async function fetchDataDragon() {
 		await getVersion();
-		const spells = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/summoner.json`,
-		);
 		const runes = await axios.get(
 			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/runesReforged.json`,
 		);
 		await getChampions($ddragon.version);
 		await getItems($ddragon.version);
-		// console.log(spells);
-		ApiConstants.spells = spells.data.data as {
-			[id: string]: Spell;
-		};
+		await getSpells($ddragon.version);
 		ApiConstants.runes = {};
 		for (const bigPart of runes.data) {
 			ApiConstants.runes[bigPart.id as number] = {
