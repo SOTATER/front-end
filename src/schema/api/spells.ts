@@ -1,7 +1,7 @@
-import type { Image } from './items';
+import type { DDragonImage } from '../ddragon/common';
 
 export interface Spell {
 	name: string;
 	description: string;
-	image: Image;
+	image: DDragonImage;
 }

@@ -4,17 +4,13 @@
 	import { Main } from './components/main';
 	import axios from 'axios';
 	import { ApiConstants } from './apis/ApiConstants';
-	import type { Item } from './schema/api/items';
 	import type { Spell } from './schema/api/spells';
 	import type { Rune } from './schema/api/runes';
-	import ddragon, { getChampions, getVersion } from './stores/DDragonStore';
+	import ddragon, { getChampions, getItems, getVersion } from './stores/DDragonStore';
 	export const url = '';
 
 	async function fetchDataDragon() {
 		await getVersion();
-		const items = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/item.json`,
-		);
 		const spells = await axios.get(
 			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/summoner.json`,
 		);
@@ -22,10 +18,8 @@
 			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/runesReforged.json`,
 		);
 		await getChampions($ddragon.version);
+		await getItems($ddragon.version);
 		// console.log(spells);
-		ApiConstants.items = items.data.data as {
-			[id: number]: Item;
-		};
 		ApiConstants.spells = spells.data.data as {
 			[id: string]: Spell;
 		};
