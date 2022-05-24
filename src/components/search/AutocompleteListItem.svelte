@@ -1,18 +1,18 @@
 <script lang="ts">
+	import { ApiConstants } from '../../apis/ApiConstants';
 	export let name: string;
 	export let level: number;
 	export let rank: string = undefined;
 	export let tier: number = undefined;
+	export let profileId: number;
 	export let searchText: string;
-	export let iconUrl =
-		'https://opgg-static.akamaized.net/images/profile_icons/profileIcon539.jpg?image=q_auto:best&v=1518361200';
 	const index = name.toLowerCase().search(searchText.toLowerCase());
 	let isSelected = false;
 
-	function handleMouseenter(event: MouseEvent) {
+	function handleMouseenter() {
 		isSelected = true;
 	}
-	function handleMouseleave(event: MouseEvent) {
+	function handleMouseleave() {
 		isSelected = false;
 	}
 </script>
@@ -23,7 +23,11 @@
 	on:mouseleave={handleMouseleave}
 	class:autocomplete-selected={isSelected}
 >
-	<img class="profile-icon" alt="aaa" src={iconUrl} />
+	<img
+		class="profile-icon"
+		alt={name}
+		src={`http://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/img/profileicon/${profileId}.png`}
+	/>
 	<div>
 		<div class="autocomplete-name">
 			{#if index >= 0}

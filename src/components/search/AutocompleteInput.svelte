@@ -2,18 +2,43 @@
 	import { push } from 'svelte-spa-router';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import { debounce } from 'lodash';
-	import axios from 'axios';
 	import AutocompleteListItem from './AutocompleteListItem.svelte';
 	import AutocompleteHistory from './AutocompleteHistory.svelte';
 	import { addHistory, history } from '../../stores/HistoryStore';
+	import type { AutocompleteSummoners } from './types';
 
-	const axiosInstance = axios.create({
-		baseURL: 'https://restcountries.eu/rest/v2/name/',
-		timeout: 3000,
-	});
+	// eslint-disable-next-line @typescript-eslint/require-await
+	async function getAutocompleteResults(keyword: string): Promise<AutocompleteSummoners> {
+		return getDummyData(keyword);
+	}
+
+	function getDummyData(keyword: string): AutocompleteSummoners {
+		return [
+			{
+				name: keyword + '피그미',
+				rank: 'Gold 1',
+				tier: 0,
+				level: 100,
+				profileId: 1,
+			},
+			{
+				name: keyword + 'gabriel',
+				rank: 'Platinum',
+				tier: 99,
+				level: 1000,
+				profileId: 2,
+			},
+			{
+				name: keyword + '창석이',
+				level: 1,
+				profileId: 3,
+			},
+		];
+	}
+
 	let isOpen = false;
 	let isLoading = true;
-	let countries: any[] = [];
+	let summoners: AutocompleteSummoners = [];
 	let searchText = '';
 
 	let historyStore: string[];
@@ -35,10 +60,9 @@
 
 	const getData = debounce(async (str: string) => {
 		try {
-			const result = await axiosInstance.get(str);
-			countries = result.data as any[];
+			summoners = await getAutocompleteResults(str);
 		} catch {
-			countries = [];
+			summoners = [];
 		} finally {
 			isLoading = false;
 		}
@@ -73,13 +97,14 @@
 			<div class="loading-container">
 				<Circle2 />
 			</div>
-		{:else if countries.length !== 0}
-			{#each countries as country}
+		{:else if summoners.length !== 0}
+			{#each summoners as summoner}
 				<AutocompleteListItem
-					name={country.name}
-					level={123}
-					rank="Silver 1"
-					tier={11}
+					name={summoner.name}
+					level={summoner.level}
+					rank={summoner.rank}
+					tier={summoner.tier}
+					profileId={summoner.profileId}
 					{searchText}
 				/>
 			{/each}
