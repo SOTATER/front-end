@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
+
 	export let runeId: number;
-	const rune = ApiConstants.runes[runeId];
+	const rune = $ddragon.runes[runeId];
 	const runeDescription = rune.shortDesc.replaceAll(
 		/<(\/)?([a-zA-Z-]*)(\s[a-zA-Z-]*=[^>]*)?(\s)*(\/)?>/g,
 		'',
