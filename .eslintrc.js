@@ -14,6 +14,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 0,
     "@typescript-eslint/no-unsafe-member-access": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
+    '@typescript-eslint/no-floating-promises': 0
   },
   overrides: [
     {

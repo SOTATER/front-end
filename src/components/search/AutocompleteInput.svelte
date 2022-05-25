@@ -70,12 +70,20 @@
 
 	const handleKeydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter') {
-			addHistory(searchText);
+			search();
 		}
 	};
 
 	const handleClick = () => {
-		return push(`/summoner/${searchText}`);
+		search();
+	};
+
+	const search = () => {
+		if (!searchText?.length) {
+			return;
+		}
+		addHistory(searchText);
+		push(`/summoner/${searchText}`);
 	};
 </script>
 
@@ -86,7 +94,7 @@
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 	/>
-	<button class="search-button" on:click={handleClick}>.GG</button>
+	<button class="search-button" on:click={handleClick}><b>.GG</b></button>
 	<div class="autocomplete-history" class:hide-result={isOpen}>
 		{#if historyStore && historyStore.length > 0}
 			<AutocompleteHistory />
@@ -149,6 +157,7 @@
 		border: none;
 		background-color: #00a9ff;
 		color: #fff;
+		cursor: pointer;
 	}
 	.autocomplete-history {
 		top: 100%;
