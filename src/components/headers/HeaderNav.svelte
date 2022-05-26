@@ -17,7 +17,7 @@
 	</div>
 	<div class="search">
 		<!-- TODO: OP.GG Search 컴포넌트 CSS으로 수정 필요 -->
-		<AutocompleteInput />
+		<!-- <AutocompleteInput /> -->
 	</div>
 </div>
 
@@ -26,7 +26,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: 72px;
+		height: 48px;
 		background-color: #5383e8;
 	}
 	.logo {
