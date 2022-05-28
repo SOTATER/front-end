@@ -34,10 +34,12 @@
 <ul>
 	{#each items as item, i}
 		<li class={activeTab === item.activeOption ? `active index-${i}` : `non-active index-${i}`}>
+			<!-- 종합 탭만 사용함에 따라 탭 일괄 미표기
 			<div class="tab" on:click={handleClick(item.activeOption)}>
 				<i class={i === 2 ? `icon` : ``} />
 				<span class={i === 2 ? `iconspan` : ``}>{item.label}</span>
-			</div>
+			</div> 
+			-->
 		</li>
 	{/each}
 </ul>
