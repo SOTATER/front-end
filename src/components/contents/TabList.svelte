@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { location } from 'svelte-spa-router';
-	import { ChampionTab, TotalTab } from '.';
+	import TotalTab from './TotalTab.svelte';
 
 	let activeTab = ($location as string).includes('champions') ? 'champion' : 'total';
 
 	interface Tab {
 		label: string;
-		component: typeof TotalTab | ChampionTab;
+		component: any;
 		activeOption: 'total' | 'champion' | 'ingame';
 	}
 
@@ -28,7 +28,7 @@
 			activeOption: 'ingame',
 		},*/
 	];
-	const handleClick = (selectedTab: string) => () => (activeTab = selectedTab);
+	// const handleClick = (selectedTab: string) => () => (activeTab = selectedTab);
 </script>
 
 <ul>
@@ -69,13 +69,13 @@
 		margin-left: 15px;
 	}
 
-	.index-2 > .tab {
+	/* .index-2 > .tab {
 		padding: 0.5rem 1rem;
-	}
+	} */
 	.iconspan {
 		color: #1a78ae;
 	}
-	.index-2 > .tab > .icon {
+	/* .index-2 > .tab > .icon {
 		position: relative;
 		bottom: 1px;
 		display: inline-block;
@@ -84,7 +84,7 @@
 		margin-right: 2px;
 		background: url('https://opgg-static.akamaized.net/images/plus/icon-ingame-n.png') no-repeat;
 		vertical-align: middle;
-	}
+	} */
 	.tab {
 		font-size: 13px;
 		min-width: 82px;
@@ -103,10 +103,10 @@
 		color: black;
 	}
 
-	li.active > .tab {
+	/* li.active > .tab {
 		color: #495057;
 		background-color: transparent;
 		border-bottom-color: #f2f2f2;
 		color: black;
-	}
+	} */
 </style>
