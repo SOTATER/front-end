@@ -3,9 +3,11 @@
 </script>
 
 <script lang="ts">
-	import { onDestroy, onMount, setContext } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 	import type { Tab, Panel } from './Tabs';
+
+	export let selectedTabIndex = 0;
 
 	const tabs = [];
 	const panels = [];
@@ -15,6 +17,8 @@
 
 	let classname = '';
 	export { classname as class };
+
+	const dispatch = createEventDispatcher();
 
 	const registerTab = (tab: Tab) => {
 		tabs.push(tab);
@@ -41,9 +45,16 @@
 	};
 
 	const selectTab = (tab: Tab) => {
-		const i = tabs.indexOf(tab);
+		selectedTabIndex = tabs.indexOf(tab);
 		selectedTab.set(tab);
-		selectedPanel.set(panels[i]);
+		selectedPanel.set(panels[selectedTabIndex]);
+		dispatch('tabChanged', selectedTabIndex);
+	};
+
+	export const setTabAndPanel = (index: number) => {
+		selectedTabIndex = index;
+		selectedTab.set(tabs[index]);
+		selectedPanel.set(panels[index]);
 	};
 
 	setContext(TABS, {
@@ -55,8 +66,10 @@
 	});
 
 	onMount(() => {
-		selectTab(tabs[0]);
+		selectTab(tabs[selectedTabIndex]);
 	});
+
+	$: setTabAndPanel(selectedTabIndex);
 </script>
 
 <div class={classname}>

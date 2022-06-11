@@ -11,7 +11,8 @@ svg.non-favorite-icon {
 	fill: #e5e5e5;
 }
 
-/* overview-stats */
+/* overview-stats-tab */
+
 .overview-stats-tab-list {
 	display: table;
 	width: 100%;
