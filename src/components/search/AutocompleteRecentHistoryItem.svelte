@@ -81,10 +81,4 @@
 		margin: 5px;
 		cursor: pointer;
 	}
-	:global(svg.favorite-icon) {
-		fill: #059ede;
-	}
-	:global(svg.non-favorite-icon) {
-		fill: #e5e5e5;
-	}
 </style>
