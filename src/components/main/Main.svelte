@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { HeaderTitle, HeaderNav } from '../headers';
-	import { TabList } from '../tabs';
+	import { TabList } from '../contents';
 </script>
 
 <main>
