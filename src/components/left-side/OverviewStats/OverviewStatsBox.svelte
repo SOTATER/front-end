@@ -1,8 +1,7 @@
 <script lang="ts">
+	import { Tab, Tabs, TabList, TabPanel } from '../../tabs';
 	import MoreButton from './MoreButton.svelte';
 	import type { OverviewStats } from './OverviewStats';
-	import OverviewStatsTab from './OverviewStatsTab.svelte';
-	import OverviewStatsTabPanel from './OverviewStatsTabPanel.svelte';
 	import OverviewStatsTabPanelItem from './OverviewStatsTabPanelItem.svelte';
 
 	let allStats: OverviewStats[] = [
@@ -205,19 +204,23 @@
 </script>
 
 <div class="stats-box">
-	<div>
-		<div class="TabList">
-			<OverviewStatsTab>
-				프리시즌<br />
-				전체
-			</OverviewStatsTab>
-			<OverviewStatsTab>솔로랭크</OverviewStatsTab>
-			<OverviewStatsTab>
-				자유랭크<br />5v5
-			</OverviewStatsTab>
-		</div>
+	<Tabs>
+		<TabList class="overview-stats-tab-list">
+			<Tab class="overview-stats-tab">
+				<div class="overview-stats-tab-content">
+					프리시즌<br />
+					전체
+				</div>
+			</Tab>
+			<Tab class="overview-stats-tab">
+				<div class="overview-stats-tab-content">솔로랭크</div></Tab
+			>
+			<Tab class="overview-stats-tab">
+				<div class="overview-stats-tab-content">자유랭크<br />5v5</div>
+			</Tab>
+		</TabList>
 		<div class="Content">
-			<OverviewStatsTabPanel>
+			<TabPanel>
 				{#if allStats.length === 0}
 					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
 				{:else}
@@ -226,8 +229,8 @@
 					{/each}
 					<MoreButton />
 				{/if}
-			</OverviewStatsTabPanel>
-			<OverviewStatsTabPanel>
+			</TabPanel>
+			<TabPanel>
 				{#if solorankedStats.length === 0}
 					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
 				{:else}
@@ -236,8 +239,8 @@
 					{/each}
 					<MoreButton />
 				{/if}
-			</OverviewStatsTabPanel>
-			<OverviewStatsTabPanel>
+			</TabPanel>
+			<TabPanel>
 				{#if flexranked5v5Stats.length === 0}
 					<div class="ErrorMessage">기록된 전적이 없습니다.</div>
 				{:else}
@@ -246,9 +249,9 @@
 					{/each}
 					<MoreButton />
 				{/if}
-			</OverviewStatsTabPanel>
+			</TabPanel>
 		</div>
-	</div>
+	</Tabs>
 </div>
 
 <style>
@@ -258,11 +261,6 @@
 		box-shadow: 0 1px #dcdfdf;
 		background: #f2f2f2;
 		border-radius: 2px;
-	}
-	.TabList {
-		display: table;
-		width: 100%;
-		table-layout: fixed;
 	}
 	.Content {
 		background: #ededed;

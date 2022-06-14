@@ -9,6 +9,7 @@
 		getSpells,
 		getVersion,
 	} from './stores/DDragonStore';
+	import './App.css';
 
 	async function fetchDataDragon() {
 		await getVersion();
@@ -30,9 +31,3 @@
 		}}
 	/>
 {/await}
-
-<style>
-	:global(body) {
-		margin: 0;
-	}
-</style>
