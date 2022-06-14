@@ -1,22 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 
-import type { DDragonDataWrapper } from './common';
+import type { DDragonDataWrapper, DDragonImage } from './common';
 
 export interface DDragonChampionInfo {
 	attack: number;
 	defense: number;
 	magic: number;
 	difficulty: number;
-}
-
-export interface DDragonImage {
-	full: string;
-	sprite: string;
-	group: string;
-	x: number;
-	y: number;
-	w: number;
-	h: number;
 }
 
 export interface DDragonChampionStats {

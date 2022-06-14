@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
+
 	export let itemId: number;
-	const item = ApiConstants.items[itemId];
+	const item = $ddragon.items[itemId];
 	const parsedData = new DOMParser().parseFromString(
 		item.description.replace(/<br>/g, '').replace(/<li>/g, ''),
 		'application/xml',

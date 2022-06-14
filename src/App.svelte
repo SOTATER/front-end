@@ -2,50 +2,20 @@
 	import Router from 'svelte-spa-router';
 	import { Search } from './components/search';
 	import { Main } from './components/main';
-	import axios from 'axios';
-	import { ApiConstants } from './apis/ApiConstants';
-	import type { Item } from './schema/api/items';
-	import type { Spell } from './schema/api/spells';
-	import type { Rune } from './schema/api/runes';
-	import ddragon, { getChampions, getVersion } from './stores/DDragonStore';
-	export const url = '';
+	import ddragon, {
+		getChampions,
+		getItems,
+		getRunes,
+		getSpells,
+		getVersion,
+	} from './stores/DDragonStore';
 
 	async function fetchDataDragon() {
 		await getVersion();
-		const items = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/item.json`,
-		);
-		const spells = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/summoner.json`,
-		);
-		const runes = await axios.get(
-			`https://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/data/ko_KR/runesReforged.json`,
-		);
 		await getChampions($ddragon.version);
-		// console.log(spells);
-		ApiConstants.items = items.data.data as {
-			[id: number]: Item;
-		};
-		ApiConstants.spells = spells.data.data as {
-			[id: string]: Spell;
-		};
-		ApiConstants.runes = {};
-		for (const bigPart of runes.data) {
-			ApiConstants.runes[bigPart.id as number] = {
-				id: bigPart.id,
-				icon: bigPart.icon,
-				key: bigPart.key,
-				longDesc: '',
-				shortDesc: '',
-				name: bigPart.name,
-			};
-			for (const smallPart of bigPart.slots) {
-				for (const rune of smallPart.runes) {
-					ApiConstants.runes[rune.id as number] = rune as Rune;
-				}
-			}
-		}
-		// console.log(ApiConstants.runes);
+		await getItems($ddragon.version);
+		await getSpells($ddragon.version);
+		await getRunes($ddragon.version);
 	}
 
 	let fetchPromise = fetchDataDragon();
@@ -56,7 +26,13 @@
 		routes={{
 			'/': Search,
 			'/summoner/:id': Main,
-			'/summoner/champions/:id': Main,
+			// '/summoner/champions/:id': Main, // 챔피언 탭 미사용으로 인한 주석 처리
 		}}
 	/>
 {/await}
+
+<style>
+	:global(body) {
+		margin: 0;
+	}
+</style>

@@ -16,6 +16,7 @@
 			component: TotalTab,
 			activeOption: 'total',
 		},
+		/* 챔피언, 인게임 탭 미사용으로 인한 주석 처리
 		{
 			label: '챔피언',
 			component: ChampionTab,
@@ -25,7 +26,7 @@
 			label: '인게임 정보',
 			component: ChampionTab,
 			activeOption: 'ingame',
-		},
+		},*/
 	];
 	const handleClick = (selectedTab: string) => () => (activeTab = selectedTab);
 </script>
@@ -33,16 +34,18 @@
 <ul>
 	{#each items as item, i}
 		<li class={activeTab === item.activeOption ? `active index-${i}` : `non-active index-${i}`}>
+			<!-- 종합 탭만 사용함에 따라 탭 일괄 미표기
 			<div class="tab" on:click={handleClick(item.activeOption)}>
 				<i class={i === 2 ? `icon` : ``} />
 				<span class={i === 2 ? `iconspan` : ``}>{item.label}</span>
-			</div>
+			</div> 
+			-->
 		</li>
 	{/each}
 </ul>
 {#each items as item}
 	{#if activeTab == item.activeOption}
-		<div class="box">
+		<div>
 			<svelte:component this={item.component} />
 		</div>
 	{/if}
@@ -105,8 +108,5 @@
 		background-color: transparent;
 		border-bottom-color: #f2f2f2;
 		color: black;
-	}
-	.box {
-		height: 100vh;
 	}
 </style>

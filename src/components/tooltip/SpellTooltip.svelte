@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
+
 	export let spellName: string;
-	const spell = ApiConstants.spells[spellName];
+	const spell = $ddragon.spells[spellName];
 </script>
 
 <div class="spell-popup">

@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { location, push } from 'svelte-spa-router';
+	// import { location, push } from 'svelte-spa-router';
 
 	const handleClick = () => {
+		/* 챔피언 탭 미사용으로 인한 주석 처리
 		const path = $location as string;
 		const userName: string = path.split('/')?.pop() || '';
 		const newPath = `/summoner/champions/${userName}`;
@@ -9,7 +10,7 @@
 			window.location.reload();
 		} else {
 			return push(newPath);
-		}
+		}*/
 	};
 </script>
 

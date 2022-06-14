@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { HeaderTitle } from '../headers';
+	import { HeaderTitle, HeaderNav } from '../headers';
 	import { TabList } from '../tabs';
 </script>
 
 <main>
+	<HeaderNav />
 	<HeaderTitle />
 	<TabList />
 </main>

@@ -6,7 +6,7 @@
 	import GameList from './GameList.svelte';
 
 	// TODO: 탭 별 매치 데이터 가져오기
-	$: console.log('게임 타입: ', $selectedPanel);
+	// $: console.log('게임 타입: ', $selectedPanel);
 	let stats: GameAverageStats = getGameAverageStatsDummyData($selectedPanel);
 </script>
 
