@@ -14,9 +14,6 @@
 <AutocompleteInput />
 
 <style>
-	:global(body) {
-		background-color: #5383e8;
-	}
 	.index-logo {
 		padding: 32px 0 24px;
 	}
