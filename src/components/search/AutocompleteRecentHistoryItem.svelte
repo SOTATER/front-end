@@ -3,6 +3,7 @@
 	import Delete16 from 'carbon-icons-svelte/lib/Delete16/Delete16.svelte';
 	import { deleteHistory } from '../../stores/HistoryStore';
 	import { addFavorite, deleteFavorite, favorite } from '../../stores/FavoriteStore';
+	import { search } from '../../utils/SearchUtil';
 
 	export let summonerName: string;
 	export let isHistoryItem = true;
@@ -29,9 +30,13 @@
 		}
 		deleteFavorite(summonerName);
 	};
+
+	const handleClick = () => {
+		search(summonerName);
+	};
 </script>
 
-<div class="history-item">
+<div class="history-item" on:click={handleClick}>
 	<div class="item-summonor-name">
 		<div class="summonor-name">{summonerName}</div>
 	</div>

@@ -1,3 +1,6 @@
+import { addHistory } from '../stores/HistoryStore';
+import { push } from 'svelte-spa-router';
+
 const CHOSUNG = [
 	'ㄱ',
 	'ㄲ',
@@ -53,4 +56,12 @@ export const disassembleChosung = (str: string): string => {
 		chosung = chosung.replace(doubleChosung, DOUBLE_CHOSUNG[doubleChosung]);
 	}
 	return chosung;
+};
+
+export const search = (searchText: string): void => {
+	if (!searchText?.length) {
+		return;
+	}
+	addHistory(searchText);
+	push(`/summoner/${searchText}`);
 };

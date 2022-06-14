@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { push } from 'svelte-spa-router';
 	import { Circle2 } from 'svelte-loading-spinners';
 	import { debounce } from 'lodash';
 	import AutocompleteListItem from './AutocompleteListItem.svelte';
 	import AutocompleteHistory from './AutocompleteHistory.svelte';
 	import { addHistory, history } from '../../stores/HistoryStore';
 	import type { AutocompleteSummoners } from './types';
+	import { search } from '../../utils/SearchUtil';
 
 	// eslint-disable-next-line @typescript-eslint/require-await
 	async function getAutocompleteResults(keyword: string): Promise<AutocompleteSummoners> {
@@ -70,20 +70,12 @@
 
 	const handleKeydown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter') {
-			search();
+			search(searchText);
 		}
 	};
 
 	const handleClick = () => {
-		search();
-	};
-
-	const search = () => {
-		if (!searchText?.length) {
-			return;
-		}
-		addHistory(searchText);
-		push(`/summoner/${searchText}`);
+		search(searchText);
 	};
 </script>
 

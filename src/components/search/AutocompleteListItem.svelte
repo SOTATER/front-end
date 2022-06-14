@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { ApiConstants } from '../../apis/ApiConstants';
+	import ddragon from '../../stores/DDragonStore';
+	import { search } from '../../utils/SearchUtil';
 	export let name: string;
 	export let level: number;
 	export let rank: string = undefined;
@@ -15,18 +16,22 @@
 	function handleMouseleave() {
 		isSelected = false;
 	}
+	function handleClick() {
+		search(name);
+	}
 </script>
 
 <div
 	class="autocomplete-item"
 	on:mouseenter={handleMouseenter}
 	on:mouseleave={handleMouseleave}
+	on:click={handleClick}
 	class:autocomplete-selected={isSelected}
 >
 	<img
 		class="profile-icon"
 		alt={name}
-		src={`http://ddragon.leagueoflegends.com/cdn/${ApiConstants.version}/img/profileicon/${profileId}.png`}
+		src={`http://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/img/profileicon/${profileId}.png`}
 	/>
 	<div>
 		<div class="autocomplete-name">
