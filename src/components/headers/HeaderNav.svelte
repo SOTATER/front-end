@@ -17,7 +17,7 @@
 	</div>
 	<div class="search">
 		<!-- TODO: OP.GG Search 컴포넌트 CSS으로 수정 필요 -->
-		<!-- <AutocompleteInput /> -->
+		<AutocompleteInput isMain={false} />
 	</div>
 </div>
 
@@ -46,9 +46,13 @@
 		align-items: center;
 	}
 	.search {
+		display: flex;
 		position: absolute;
 		top: 8px;
-		right: 24px;
+		right: 0px;
+		width: 340px;
+		height: 32px;
+		transition: width 0.2s ease 0s;
 		z-index: 1;
 	}
 </style>

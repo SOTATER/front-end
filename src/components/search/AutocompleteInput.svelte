@@ -7,6 +7,8 @@
 	import type { AutocompleteSummoners } from './types';
 	import { search } from '../../utils/SearchUtil';
 
+	export let isMain = true;
+
 	// eslint-disable-next-line @typescript-eslint/require-await
 	async function getAutocompleteResults(keyword: string): Promise<AutocompleteSummoners> {
 		return getDummyData(keyword);
@@ -91,13 +93,22 @@
 <div class="autocomplete">
 	<input
 		class="autocomplete-input"
+		class:autocomplete-input-main={isMain}
+		class:autocomplete-input-header={!isMain}
 		bind:value={searchText}
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 		on:focus={openHistory}
 		on:blur={closeHistory}
 	/>
-	<button class="search-button" on:click={handleClick}><b>.GG</b></button>
+	<button
+		class:search-button-main={isMain}
+		class:search-button-header={!isMain}
+		class="search-button"
+		on:click={handleClick}
+	>
+		<b>.GG</b>
+	</button>
 	<div class="autocomplete-history" class:hide-result={isOpen}>
 		{#if historyStore && historyStore.length > 0 && isHistoryOpened}
 			<AutocompleteHistory />
@@ -131,17 +142,32 @@
 		border-radius: 2px;
 		background-color: #fff;
 	}
+
 	.autocomplete-input {
 		width: 100%;
-		padding: 15px 150px 18px 17px;
 		border: none;
+		box-sizing: border-box;
+		outline: none;
+	}
+
+	.autocomplete-input-main {
+		padding: 15px 150px 18px 17px;
 		line-height: 17px;
 		font-size: 14px;
 		color: #9b9b9b;
-		box-sizing: border-box;
-		outline: none;
 		box-shadow: 0 2px 2px 0 rgb(0 0 0 / 19%);
 		display: block;
+	}
+
+	.autocomplete-input-header {
+		border: 0px;
+		padding: 0px 12px 0px 14px;
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		font-size: 12px;
+		color: rgb(114, 114, 114);
+		line-height: 15px;
+		height: 100%;
 	}
 	.loading-container {
 		width: 100%;
@@ -150,17 +176,25 @@
 		align-items: center;
 		padding: 10px;
 	}
+
 	.search-button {
 		position: absolute;
-		top: 0;
-		right: 0;
-		margin: 10px 10px 0 0;
-		height: 30px;
-		padding: 5px;
-		border: none;
 		background-color: #00a9ff;
 		color: #fff;
 		cursor: pointer;
+		border: none;
+		top: 0;
+		right: 0;
+	}
+	.search-button-main {
+		margin: 10px 10px 0 0;
+		height: 30px;
+		padding: 5px;
+	}
+
+	.search-button-header {
+		width: 54px;
+		height: 32px;
 	}
 	.autocomplete-history {
 		top: 100%;
