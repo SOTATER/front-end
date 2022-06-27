@@ -77,6 +77,15 @@
 	const handleClick = () => {
 		search(searchText);
 	};
+
+	let isHistoryOpened = false;
+
+	const openHistory = () => {
+		isHistoryOpened = true;
+	};
+	const closeHistory = () => {
+		isHistoryOpened = false;
+	};
 </script>
 
 <div class="autocomplete">
@@ -85,10 +94,12 @@
 		bind:value={searchText}
 		on:input={handleInput}
 		on:keydown={handleKeydown}
+		on:focus={openHistory}
+		on:blur={closeHistory}
 	/>
 	<button class="search-button" on:click={handleClick}><b>.GG</b></button>
 	<div class="autocomplete-history" class:hide-result={isOpen}>
-		{#if historyStore && historyStore.length > 0}
+		{#if historyStore && historyStore.length > 0 && isHistoryOpened}
 			<AutocompleteHistory />
 		{/if}
 	</div>
@@ -114,9 +125,7 @@
 
 <style>
 	.autocomplete {
-		position: relative;
-		width: 624px;
-		margin: 0 auto;
+		width: 100%;
 		border-radius: 2px;
 		background-color: #fff;
 	}
