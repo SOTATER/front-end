@@ -3,7 +3,7 @@
 	import { debounce } from 'lodash';
 	import AutocompleteListItem from './AutocompleteListItem.svelte';
 	import AutocompleteHistory from './AutocompleteHistory.svelte';
-	import { addHistory, history } from '../../stores/HistoryStore';
+	import { history } from '../../stores/HistoryStore';
 	import type { AutocompleteSummoners } from './types';
 	import { search } from '../../utils/SearchUtil';
 
@@ -83,9 +83,9 @@
 	const openHistory = () => {
 		isHistoryOpened = true;
 	};
-	const closeHistory = () => {
+	const closeHistory = debounce(() => {
 		isHistoryOpened = false;
-	};
+	}, 500);
 </script>
 
 <div class="autocomplete">
@@ -125,7 +125,9 @@
 
 <style>
 	.autocomplete {
-		width: 100%;
+		position: relative;
+		width: 624px;
+		margin: 0 auto;
 		border-radius: 2px;
 		background-color: #fff;
 	}
