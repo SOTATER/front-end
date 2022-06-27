@@ -10,6 +10,9 @@ export namespace CookiesArray {
 		const valuesArray: string[] = values.split('$');
 		const index = valuesArray.indexOf(value);
 		if (index > -1) {
+			if (valuesArray.length === 1) {
+				return;
+			}
 			valuesArray.splice(index, 1);
 			values = valuesArray.join('$');
 		}
