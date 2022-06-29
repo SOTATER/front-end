@@ -50,7 +50,7 @@
 		position: absolute;
 		top: 8px;
 		right: 0px;
-		width: 340px;
+		width: 300px;
 		height: 32px;
 		transition: width 0.2s ease 0s;
 		z-index: 1;

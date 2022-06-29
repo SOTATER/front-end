@@ -109,9 +109,14 @@
 	>
 		<b>.GG</b>
 	</button>
-	<div class="autocomplete-history" class:hide-result={isOpen}>
+	<div
+		class="autocomplete-history"
+		class:autocomplete-history-main={isMain}
+		class:autocomplete-history-header={!isMain}
+		class:hide-result={isOpen}
+	>
 		{#if historyStore && historyStore.length > 0 && isHistoryOpened}
-			<AutocompleteHistory />
+			<AutocompleteHistory {isMain} />
 		{/if}
 	</div>
 	<div class="autocomplete-results" class:hide-result={!isOpen}>
@@ -197,7 +202,7 @@
 		height: 32px;
 	}
 	.autocomplete-history {
-		top: 100%;
+		position: absolute;
 		left: 0;
 		z-index: 10;
 		max-height: 1000px;
@@ -205,6 +210,12 @@
 		padding: 0;
 		background-color: rgb(249, 250, 252);
 		box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+	}
+	.autocomplete-history-main {
+		top: 100%;
+	}
+	.autocomplete-history-header {
+		top: calc(100% + 3px);
 	}
 	.autocomplete-results {
 		top: 100%;

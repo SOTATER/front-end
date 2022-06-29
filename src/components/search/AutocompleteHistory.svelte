@@ -7,6 +7,7 @@
 
 	import AutocompleteRecentHistoryItem from './AutocompleteRecentHistoryItem.svelte';
 
+	export let isMain = true;
 	let historyStore: string[];
 	history.subscribe((value) => {
 		historyStore = value;
@@ -41,14 +42,14 @@
 		</div>
 	</div>
 	<div class="history-tabItems">
-		<div class="history-recent" class:hide={!isRecentTab}>
+		<div class="history-recent" class:history-recent-main={isMain} class:hide={!isRecentTab}>
 			{#if historyStore}
 				{#each historyStore as item (item)}
-					<AutocompleteRecentHistoryItem summonerName={item} />
+					<AutocompleteRecentHistoryItem {isMain} summonerName={item} />
 				{/each}
 			{/if}
 		</div>
-		<div class="history-favorite" class:hide={isRecentTab}>
+		<div class="history-favorite" class:history-favorite-main={isMain} class:hide={isRecentTab}>
 			{#if !favoriteStore?.length}
 				<li class="no-data">
 					<img
@@ -65,7 +66,11 @@
 			{/if}
 			{#if favoriteStore}
 				{#each favoriteStore as item (item)}
-					<AutocompleteRecentHistoryItem summonerName={item} isHistoryItem={false} />
+					<AutocompleteRecentHistoryItem
+						{isMain}
+						summonerName={item}
+						isHistoryItem={false}
+					/>
 				{/each}
 			{/if}
 		</div>
@@ -96,12 +101,16 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+	}
+	.history-recent-main {
 		padding: 5px 20px 20px 0;
 	}
 	.history-favorite {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+	}
+	.history-favorite-main {
 		padding: 5px 20px 20px 0;
 	}
 	.hide {

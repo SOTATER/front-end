@@ -4,7 +4,7 @@
 	import { deleteHistory } from '../../stores/HistoryStore';
 	import { addFavorite, deleteFavorite, favorite } from '../../stores/FavoriteStore';
 	import { search } from '../../utils/SearchUtil';
-
+	export let isMain = true;
 	export let summonerName: string;
 	export let isHistoryItem = true;
 	let isFavorite = false;
@@ -36,7 +36,12 @@
 	};
 </script>
 
-<div class="history-item" on:click={handleClick}>
+<div
+	class="history-item"
+	class:history-item-main={isMain}
+	class:history-item-header={!isMain}
+	on:click={handleClick}
+>
 	<div class="item-summonor-name">
 		<div class="summonor-name">{summonerName}</div>
 	</div>
@@ -58,12 +63,22 @@
 
 <style>
 	.history-item {
-		width: 33.3%;
-		padding-left: 20px;
-		margin-top: 15px;
 		box-sizing: border-box;
 		line-height: 15px;
 		font-size: 12px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+	.history-item-main {
+		width: 33.3%;
+		padding-left: 20px;
+		margin-top: 15px;
+	}
+	.history-item-header {
+		width: 100%;
+		padding: 8px 16px;
 	}
 	.item-summonor-name {
 		flex-grow: 1;
@@ -71,12 +86,6 @@
 	.summonor-name {
 		cursor: pointer;
 		display: inline-block;
-	}
-	.history-item {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-items: center;
 	}
 	.history-actions {
 		display: flex;

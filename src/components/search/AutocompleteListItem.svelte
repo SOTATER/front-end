@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ddragon from '../../stores/DDragonStore';
+	import { getProfileImageSrc } from '../../utils/ImageUtil';
 	import { search } from '../../utils/SearchUtil';
 	export let name: string;
 	export let level: number;
@@ -28,11 +29,7 @@
 	on:click={handleClick}
 	class:autocomplete-selected={isSelected}
 >
-	<img
-		class="profile-icon"
-		alt={name}
-		src={`http://ddragon.leagueoflegends.com/cdn/${$ddragon.version}/img/profileicon/${profileId}.png`}
-	/>
+	<img class="profile-icon" alt={name} src={getProfileImageSrc($ddragon.version, profileId)} />
 	<div>
 		<div class="autocomplete-name">
 			{#if index >= 0}
