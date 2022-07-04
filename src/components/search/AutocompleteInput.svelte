@@ -6,6 +6,7 @@
 	import { history } from '../../stores/HistoryStore';
 	import type { AutocompleteSummoners } from './types';
 	import { search } from '../../utils/SearchUtil';
+	import { clickOutside } from '../../utils/ClickOutsideUtil';
 
 	export let isMain = true;
 
@@ -90,7 +91,7 @@
 	}, 500);
 </script>
 
-<div class="autocomplete">
+<div class="autocomplete" use:clickOutside={() => closeHistory()}>
 	<input
 		class="autocomplete-input"
 		class:autocomplete-input-main={isMain}
@@ -99,7 +100,6 @@
 		on:input={handleInput}
 		on:keydown={handleKeydown}
 		on:focus={openHistory}
-		on:blur={closeHistory}
 	/>
 	<button
 		class:search-button-main={isMain}
