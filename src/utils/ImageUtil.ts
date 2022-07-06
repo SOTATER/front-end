@@ -13,3 +13,7 @@ export const getSpellImageSrc = (version: string, image: string): string => {
 export const getRuneImageSrc = (image: string): string => {
 	return `http://ddragon.leagueoflegends.com/cdn/img/${image}`;
 };
+
+export const getProfileImageSrc = (version: string, profileId: number): string => {
+	return `http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${profileId}.png`;
+};
