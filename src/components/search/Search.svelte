@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { title } from '../../stores/MetaStore';
 	import AutocompleteInput from './AutocompleteInput.svelte';
+
 	export let name: string;
+	title.set('롤 전적 검색');
 </script>
 
 <div class="index-logo">

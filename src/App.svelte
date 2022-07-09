@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Router from 'svelte-spa-router';
+	import { title } from './stores/MetaStore';
 	import { Search } from './components/search';
 	import { Main } from './components/main';
 	import ddragon, {
@@ -31,3 +32,7 @@
 		}}
 	/>
 {/await}
+
+<svelte:head>
+	<title>{$title}</title>
+</svelte:head>
