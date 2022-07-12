@@ -29,6 +29,7 @@
 			'/': Search,
 			'/summoner/:id': Main,
 			// '/summoner/champions/:id': Main, // 챔피언 탭 미사용으로 인한 주석 처리
+			'*': Main,
 		}}
 	/>
 {/await}
