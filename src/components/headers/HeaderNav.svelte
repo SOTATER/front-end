@@ -16,7 +16,6 @@
 		</h1>
 	</div>
 	<div class="search">
-		<!-- TODO: OP.GG Search 컴포넌트 CSS으로 수정 필요 -->
 		<AutocompleteInput isMain={false} />
 	</div>
 </div>
@@ -49,7 +48,7 @@
 		display: flex;
 		position: absolute;
 		top: 8px;
-		right: 0px;
+		right: 24px;
 		width: 300px;
 		height: 32px;
 		transition: width 0.2s ease 0s;

@@ -1,5 +1,6 @@
 import { addHistory } from '../stores/HistoryStore';
 import { push } from 'svelte-spa-router';
+import { title } from '../stores/MetaStore';
 
 const CHOSUNG = [
 	'ㄱ',
@@ -64,4 +65,5 @@ export const search = (searchText: string): void => {
 	}
 	addHistory(searchText);
 	push(`/summoner/${searchText}`);
+	title.set(`${searchText} - 게임 전적`);
 };
