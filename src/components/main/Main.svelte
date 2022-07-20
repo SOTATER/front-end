@@ -3,15 +3,24 @@
 	import { title } from '../../stores/MetaStore';
 	import { HeaderTitle, HeaderNav } from '../headers';
 	import { TabList } from '../contents';
+	import NotFound from '../NoResult/NotFound.svelte';
 
-	const summoner = ($location as string).split('/')?.pop() || '';
-	title.set(`${summoner} - 게임 전적`);
+	// svelte-ignore unused-export-let
+	export let params = {}; // "<Main> was created with unknown prop 'params'" warning 제거를 위함
+
+	const summoner =
+		($location.startsWith('/summoner/') && ($location as string).split('/')?.pop()) || '';
+	summoner ? title.set(`${summoner} - 게임 전적`) : title.clear();
 </script>
 
 <main>
 	<HeaderNav />
-	<HeaderTitle />
-	<TabList />
+	{#if summoner}
+		<HeaderTitle />
+		<TabList />
+	{:else}
+		<NotFound />
+	{/if}
 </main>
 
 <style>
